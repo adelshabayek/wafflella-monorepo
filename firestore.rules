@@ -1,0 +1,25 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check if user is authenticated admin
+    function isAdmin() {
+      return request.auth != null;
+    }
+
+    match /settings/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /categories/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /products/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

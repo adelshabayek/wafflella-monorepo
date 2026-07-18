@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties ─────────────────────────────────────────────────── */
+:root {
+  --brand-primary: #D81B60;
+  --brand-secondary: #F48FB1;
+  --brand-accent: #4E342E;
+  --brand-background: #FFFDFB;
+  --brand-text: #3E2723;
+  --brand-muted: #8D6E63;
+  --brand-border: #F5E6E8;
+}
+
+/* ─── Base Reset & Global Styles ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--brand-background);
+  color: var(--brand-text);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+/* ─── Typography ─────────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--brand-text);
+}
+
+/* ─── Selection ─────────────────────────────────────────────────────────────── */
+::selection {
+  background-color: #FCE4EC;
+  color: var(--brand-primary);
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--brand-background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--brand-secondary);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-primary);
+}
+
+/* ─── Utilities ─────────────────────────────────────────────────────────────── */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+
+  .glass-dark {
+    background: rgba(255, 253, 251, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(245, 230, 232, 0.6);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #D81B60 0%, #F06292 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+  }
+
+  .container-narrow {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-narrow {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────────────── */
+@layer components {
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .animate-on-scroll.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero-dot {
+    animation: heroDotFloat linear infinite;
+    opacity: 0.3;
+  }
+}
+
+@keyframes heroDotFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.3; }
+  50% { transform: translateY(-12px); opacity: 0.7; }
+}
+
+/* ─── RTL Overrides ──────────────────────────────────────────────────────────── */
+html[dir="rtl"] {
+  /* Set Arabic font family if you want to differentiate, but standard sans-serif/system-ui works well */
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+/* Ensure specific alignments are respected in RTL */
+html[dir="rtl"] .text-left {
+  text-align: right;
+}
+html[dir="rtl"] .text-right {
+  text-align: left;
+}

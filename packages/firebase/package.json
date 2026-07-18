@@ -1,0 +1,25 @@
+{
+  "name": "@wafflella/firebase",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./config": "./src/config.ts",
+    "./auth": "./src/auth.ts",
+    "./firestore": "./src/firestore.ts",
+    "./storage": "./src/storage.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@wafflella/types": "workspace:*",
+    "firebase": "^11.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "typescript": "^5.6.3"
+  }
+}
