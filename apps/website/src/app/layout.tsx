@@ -5,6 +5,7 @@ import { QueryProvider } from "@/providers/QueryProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/shared/FloatingWhatsApp";
+import { FloatingCart } from "@/components/shared/FloatingCart";
 import { CartProvider } from "@/contexts/CartContext";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { LanguageProvider } from "@/contexts/LanguageContext";
@@ -108,6 +109,7 @@ export default function RootLayout({
               <main className="flex-1">{children}</main>
               <Footer />
               <FloatingWhatsApp />
+              <FloatingCart />
               <Toaster
                 position="top-right"
                 toastOptions={{
