@@ -8,7 +8,7 @@ import type { Product } from "@wafflella/types";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { memo } from "react";
+import { memo, useState } from "react";
 
 interface ProductCardProps {
   product: Product;
@@ -20,9 +20,9 @@ const PLACEHOLDER_IMAGE =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23FCE4EC'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' font-size='48' fill='%23E91E63'%3E🧇%3C/text%3E%3C/svg%3E";
 
 export const ProductCard = memo(function ProductCard({ product, index = 0, variant = "default" }: ProductCardProps) {
-  const { add, items, increment, decrement } = useCart();
-  const cartItem = items.find((i) => i.product.id === product.id);
+  const { add } = useCart();
   const { isRTL } = useLanguage();
+  const [qty, setQty] = useState(1);
 
   const name = isRTL && product.nameAr ? product.nameAr : product.name;
   const description = isRTL && product.descriptionAr ? product.descriptionAr : product.description;
@@ -99,46 +99,49 @@ export const ProductCard = memo(function ProductCard({ product, index = 0, varia
             </span>
             <span className="text-brand-muted text-sm ml-1">EGP</span>
           </div>
-          {cartItem ? (
-            <div className="flex items-center gap-1.5" dir="ltr">
+          <div className="flex items-center gap-1.5" dir="ltr">
+            {/* Quantity Selector */}
+            <div className="flex items-center">
               <button
-                onClick={() => decrement(product.id)}
+                onClick={() => setQty(Math.max(1, qty - 1))}
                 className="w-8 h-8 rounded-xl bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:border-brand-primary hover:text-brand-primary transition-colors shadow-sm"
                 aria-label={`Decrease quantity of ${name}`}
               >
                 <Minus size={14} />
               </button>
               <span className="w-6 text-center text-sm font-bold text-brand-text">
-                {cartItem.quantity}
+                {qty}
               </span>
               <button
-                onClick={() => increment(product.id)}
-                className="w-8 h-8 rounded-xl bg-gradient-brand text-white flex items-center justify-center hover:opacity-90 transition-all shadow-soft hover:shadow-card-hover hover:scale-105 active:scale-95"
+                onClick={() => setQty(qty + 1)}
+                className="w-8 h-8 rounded-xl bg-brand-primary-light border border-brand-primary/20 text-brand-primary flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all shadow-sm"
                 aria-label={`Increase quantity of ${name}`}
               >
                 <Plus size={14} />
               </button>
             </div>
-          ) : (
+
+            {/* Add to Cart Button */}
             <button
               onClick={() => {
                 if (product.available) {
-                  add(product);
-                  toast.success(`${name} added to cart!`);
+                  add(product, qty);
+                  setQty(1);
+                  toast.success(`${qty} ${name} added to cart!`);
                 }
               }}
               disabled={!product.available}
               className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200",
+                "flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-200 ml-1",
                 product.available
                   ? "bg-gradient-brand text-white hover:opacity-90 shadow-soft hover:shadow-card-hover hover:scale-105 active:scale-95"
                   : "bg-brand-border text-brand-muted cursor-not-allowed"
               )}
               aria-label={`Add ${name} to cart`}
             >
-              <ShoppingBag size={14} />
+              <ShoppingBag size={16} />
             </button>
-          )}
+          </div>
         </div>
       </div>
     </motion.article>

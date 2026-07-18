@@ -24,7 +24,7 @@ interface CartState {
 }
 
 type CartAction =
-  | { type: "ADD"; product: Product }
+  | { type: "ADD"; product: Product; quantity?: number | undefined }
   | { type: "REMOVE"; productId: string }
   | { type: "INCREMENT"; productId: string }
   | { type: "DECREMENT"; productId: string }
@@ -38,7 +38,7 @@ interface CartContextValue {
   isOpen: boolean;
   totalItems: number;
   totalPrice: number;
-  add: (product: Product) => void;
+  add: (product: Product, quantity?: number) => void;
   remove: (productId: string) => void;
   increment: (productId: string) => void;
   decrement: (productId: string) => void;
@@ -55,6 +55,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       return { ...state, items: action.items };
 
     case "ADD": {
+      const addQty = action.quantity ?? 1;
       const existing = state.items.find((i) => i.product.id === action.product.id);
       if (existing) {
         return {
@@ -62,7 +63,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
           isOpen: true,
           items: state.items.map((i) =>
             i.product.id === action.product.id
-              ? { ...i, quantity: i.quantity + 1 }
+              ? { ...i, quantity: i.quantity + addQty }
               : i
           ),
         };
@@ -70,7 +71,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       return {
         ...state,
         isOpen: true,
-        items: [...state.items, { product: action.product, quantity: 1 }],
+        items: [...state.items, { product: action.product, quantity: addQty }],
       };
     }
 
@@ -147,7 +148,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [state.items]);
 
-  const add = useCallback((product: Product) => dispatch({ type: "ADD", product }), []);
+  const add = useCallback((product: Product, quantity?: number) => dispatch({ type: "ADD", product, quantity }), []);
   const remove = useCallback((productId: string) => dispatch({ type: "REMOVE", productId }), []);
   const increment = useCallback((productId: string) => dispatch({ type: "INCREMENT", productId }), []);
   const decrement = useCallback((productId: string) => dispatch({ type: "DECREMENT", productId }), []);
