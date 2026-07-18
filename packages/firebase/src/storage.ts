@@ -4,10 +4,16 @@ import {
   uploadBytesResumable,
   getDownloadURL,
   deleteObject,
+  type FirebaseStorage,
 } from "firebase/storage";
-import { app } from "./config";
+import { getApp } from "./config";
 
-const storage = getStorage(app);
+// Lazily initialized — not evaluated at module load time (safe for SSG/prerender)
+let _storage: FirebaseStorage | undefined;
+function getStorageInstance(): FirebaseStorage {
+  if (!_storage) _storage = getStorage(getApp());
+  return _storage;
+}
 
 export interface UploadProgressCallback {
   (progress: number): void;
@@ -25,7 +31,7 @@ export async function uploadProductImage(
   onProgress?: UploadProgressCallback
 ): Promise<string> {
   const ext = file.name.split(".").pop() ?? "jpg";
-  const storageRef = ref(storage, `products/${productId}/${Date.now()}.${ext}`);
+  const storageRef = ref(getStorageInstance(), `products/${productId}/${Date.now()}.${ext}`);
   const uploadTask = uploadBytesResumable(storageRef, file, {
     contentType: file.type,
   });
@@ -51,8 +57,9 @@ export async function uploadProductImage(
  * Deletes a product image from Firebase Storage by its download URL.
  */
 export async function deleteProductImage(url: string): Promise<void> {
-  const imageRef = ref(storage, url);
+  const imageRef = ref(getStorageInstance(), url);
   await deleteObject(imageRef);
 }
 
-export { storage };
+export { getStorageInstance as storage };
+

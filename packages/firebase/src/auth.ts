@@ -1,25 +1,31 @@
 import {
-  getAuth,
+  getAuth as firebaseGetAuth,
   signInWithEmailAndPassword,
   signOut as firebaseSignOut,
   onAuthStateChanged as firebaseOnAuthStateChanged,
   type User,
+  type Auth,
 } from "firebase/auth";
-import { app } from "./config";
+import { getApp } from "./config";
 import type { AdminUser } from "@wafflella/types";
 
-const auth = getAuth(app);
+// Lazily initialized — not evaluated at module load time (safe for SSG/prerender)
+let _auth: Auth | undefined;
+function getAuthInstance(): Auth {
+  if (!_auth) _auth = firebaseGetAuth(getApp());
+  return _auth;
+}
 
 export function signIn(email: string, password: string) {
-  return signInWithEmailAndPassword(auth, email, password);
+  return signInWithEmailAndPassword(getAuthInstance(), email, password);
 }
 
 export function signOut() {
-  return firebaseSignOut(auth);
+  return firebaseSignOut(getAuthInstance());
 }
 
 export function onAuthStateChanged(callback: (user: AdminUser | null) => void) {
-  return firebaseOnAuthStateChanged(auth, (firebaseUser: User | null) => {
+  return firebaseOnAuthStateChanged(getAuthInstance(), (firebaseUser: User | null) => {
     if (firebaseUser) {
       callback({
         uid: firebaseUser.uid,
@@ -32,4 +38,5 @@ export function onAuthStateChanged(callback: (user: AdminUser | null) => void) {
   });
 }
 
-export { auth };
+export { getAuthInstance as auth };
+
