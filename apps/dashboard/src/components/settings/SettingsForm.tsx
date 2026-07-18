@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { Save, Loader2, Store, Phone, MapPin, Clock } from "lucide-react";
+import { Save, Loader2, Store, Phone, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const settingsSchema = z.object({
@@ -90,7 +90,11 @@ export function SettingsForm() {
   });
 
   const mutation = useMutation({
-    mutationFn: (data: SettingsFormData) => updateSettings(data),
+    mutationFn: ({ logo, ...rest }: SettingsFormData) => {
+      const payload: Partial<ShopSettings> = { ...rest };
+      if (logo) payload.logo = logo;
+      return updateSettings(payload);
+    },
     onSuccess: () => {
       toast.success("Settings saved! Public website updated.");
       reset(undefined, { keepValues: true });

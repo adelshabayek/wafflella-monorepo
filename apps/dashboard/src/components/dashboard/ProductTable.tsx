@@ -53,16 +53,15 @@ function EditProductModal({
     },
   });
 
-  const save = (e: React.FormEvent) => {
+  const save = (e: React.FormEvent): void => {
     e.preventDefault();
-    if (!name.trim()) return toast.error("English name is required");
+    if (!name.trim()) { toast.error("English name is required"); return; }
     const parsedPrice = parseFloat(price);
-    if (isNaN(parsedPrice) || parsedPrice < 0) return toast.error("Valid price is required");
-    mutation.mutate({ 
-      name: name.trim(), 
-      nameAr: nameAr.trim() || undefined,
-      price: parsedPrice
-    });
+    if (isNaN(parsedPrice) || parsedPrice < 0) { toast.error("Valid price is required"); return; }
+    const trimmedNameAr = nameAr.trim();
+    const data: Partial<Product> = { name: name.trim(), price: parsedPrice };
+    if (trimmedNameAr) data.nameAr = trimmedNameAr;
+    mutation.mutate(data);
   };
 
   return (

@@ -10,7 +10,7 @@ export interface ShopSettings {
   instagram: string;
   address: string;
   openingHours: string;
-  logo: string;
+  logo?: string;
 }
 
 // ─── Category ─────────────────────────────────────────────────────────────────
