@@ -78,7 +78,7 @@ function OrderForm({ onBack }: { onBack: () => void }) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full" noValidate>
       {/* Header */}
-      <div className="px-5 pt-6 pb-4 border-b border-brand-border/60">
+      <div className="px-5 pt-5 pb-4 border-b border-brand-border/60">
         <button
           type="button"
           onClick={onBack}
@@ -232,7 +232,7 @@ function CartItems({ onProceed }: { onProceed: () => void }) {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="flex items-center justify-between ps-5 pe-14 pt-6 pb-4 border-b border-brand-border/60">
+      <div className="flex items-center justify-between ps-5 pe-14 pt-5 pb-4 border-b border-brand-border/60">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 bg-brand-primary-light rounded-xl flex items-center justify-center">
             <ShoppingBag size={17} className="text-brand-primary" />
@@ -383,7 +383,7 @@ export function CartDrawer() {
             <button
               onClick={handleClose}
               className={cn(
-                "absolute top-4 z-10 w-9 h-9 rounded-xl bg-brand-background border border-brand-border hover:bg-brand-primary-light hover:border-brand-primary hover:text-brand-primary flex items-center justify-center transition-all duration-200",
+                "absolute top-5 z-10 w-9 h-9 rounded-xl bg-brand-background border border-brand-border hover:bg-brand-primary-light hover:border-brand-primary hover:text-brand-primary flex items-center justify-center transition-all duration-200",
                 isRTL ? "left-4" : "right-4"
               )}
               aria-label="Close cart"
