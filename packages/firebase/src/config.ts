@@ -27,7 +27,14 @@ export function getApp(): FirebaseApp {
     );
   }
 
-  _app = initializeApp(firebaseConfig as Required<typeof firebaseConfig>);
+  _app = initializeApp({
+    apiKey: firebaseConfig.apiKey!,
+    authDomain: firebaseConfig.authDomain!,
+    projectId: firebaseConfig.projectId!,
+    storageBucket: firebaseConfig.storageBucket!,
+    messagingSenderId: firebaseConfig.messagingSenderId!,
+    appId: firebaseConfig.appId!,
+  });
   return _app;
 }
 
