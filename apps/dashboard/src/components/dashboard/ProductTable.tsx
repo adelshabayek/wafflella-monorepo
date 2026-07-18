@@ -9,7 +9,7 @@ import {
 } from "@wafflella/firebase";
 import type { Product, Category } from "@wafflella/types";
 import { motion } from "framer-motion";
-import { Search, Check, X, Pencil, Eye, EyeOff, Package } from "lucide-react";
+import { Search, X, Pencil, Eye, EyeOff, Package } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
