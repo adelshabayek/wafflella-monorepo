@@ -208,7 +208,7 @@ function OrderForm({ onBack }: { onBack: () => void }) {
 }
 
 function CartItems({ onProceed }: { onProceed: () => void }) {
-  const { items, totalItems, totalPrice, increment, decrement, remove, close } = useCart();
+  const { items, totalItems, totalPrice, increment, decrement, remove, close, clear } = useCart();
   const { t, isRTL } = useLanguage();
 
   if (items.length === 0) {
@@ -232,7 +232,7 @@ function CartItems({ onProceed }: { onProceed: () => void }) {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="px-5 pt-6 pb-4 border-b border-brand-border/60">
+      <div className="flex items-center justify-between px-5 pt-6 pb-4 border-b border-brand-border/60">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 bg-brand-primary-light rounded-xl flex items-center justify-center">
             <ShoppingBag size={17} className="text-brand-primary" />
@@ -244,6 +244,12 @@ function CartItems({ onProceed }: { onProceed: () => void }) {
             <span className="text-xs text-brand-muted mt-0.5 block">{totalItems} {t.cart.items}</span>
           </div>
         </div>
+        <button
+          onClick={clear}
+          className="text-xs font-semibold text-red-500 hover:text-red-600 transition-colors bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg"
+        >
+          {isRTL ? "حذف الكل" : "Clear All"}
+        </button>
       </div>
 
       {/* Items */}
@@ -353,7 +359,7 @@ export function CartDrawer() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
-            className="fixed inset-0 bg-black/40 z-40 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/40 z-[60] backdrop-blur-sm"
             aria-hidden="true"
           />
 
@@ -364,7 +370,7 @@ export function CartDrawer() {
             exit={{ x: isRTL ? "-100%" : "100%" }}
             transition={{ type: "spring", stiffness: 380, damping: 38 }}
             className={cn(
-              "fixed top-0 bottom-0 w-full sm:max-w-[420px] bg-white z-50 flex flex-col",
+              "fixed top-0 bottom-0 w-full sm:max-w-[480px] bg-white z-[70] flex flex-col",
               "shadow-[−20px_0_60px_rgba(0,0,0,0.15)]",
               isRTL ? "left-0" : "right-0"
             )}

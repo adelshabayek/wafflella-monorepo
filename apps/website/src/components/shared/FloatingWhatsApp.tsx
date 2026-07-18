@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { useSettings } from "@wafflella/hooks";
+import { useCart } from "@/contexts/CartContext";
 import { MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function FloatingWhatsApp() {
   const { data: settings } = useSettings();
+  const { isOpen } = useCart();
   const [isVisible, setIsVisible] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -20,7 +22,7 @@ export function FloatingWhatsApp() {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible && !isOpen && (
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}

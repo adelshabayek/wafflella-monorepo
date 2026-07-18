@@ -5,11 +5,11 @@ import { ShoppingCart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function FloatingCart() {
-  const { totalItems, open } = useCart();
+  const { totalItems, open, isOpen } = useCart();
 
   return (
     <AnimatePresence>
-      {totalItems > 0 && (
+      {totalItems > 0 && !isOpen && (
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
