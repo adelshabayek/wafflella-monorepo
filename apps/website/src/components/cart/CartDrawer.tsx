@@ -232,7 +232,7 @@ function CartItems({ onProceed }: { onProceed: () => void }) {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 pt-6 pb-4 border-b border-brand-border/60">
+      <div className="flex items-center justify-between ps-5 pe-14 pt-6 pb-4 border-b border-brand-border/60">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 bg-brand-primary-light rounded-xl flex items-center justify-center">
             <ShoppingBag size={17} className="text-brand-primary" />
