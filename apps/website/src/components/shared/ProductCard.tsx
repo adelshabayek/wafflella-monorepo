@@ -26,6 +26,8 @@ export const ProductCard = memo(function ProductCard({ product, index = 0, varia
   const name = isRTL && product.nameAr ? product.nameAr : product.name;
   const description = isRTL && product.descriptionAr ? product.descriptionAr : product.description;
 
+  const imageUrl = product.image ? product.image.replace('.png', '.webp') : PLACEHOLDER_IMAGE;
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
@@ -48,7 +50,7 @@ export const ProductCard = memo(function ProductCard({ product, index = 0, varia
           )}
         >
           <Image
-            src={product.image || PLACEHOLDER_IMAGE}
+            src={imageUrl}
             alt={name}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

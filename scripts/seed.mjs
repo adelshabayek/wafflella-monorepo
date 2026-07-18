@@ -56,7 +56,7 @@ const products = [
     price: 80,
     available: true,
     featured: false,
-    image: "/images/products/waffle_choco.png",
+    image: "/images/products/waffle_choco.webp",
   },
   {
     name: "Waffle Lotus",
@@ -135,7 +135,7 @@ const products = [
     price: 70,
     available: true,
     featured: false,
-    image: "/images/products/bun_cake_choco.png",
+    image: "/images/products/bun_cake_choco.webp",
   },
   {
     name: "Bun Cake Chocolate (12 pcs)",
@@ -146,7 +146,7 @@ const products = [
     price: 35,
     available: true,
     featured: false,
-    image: "/images/products/bun_cake_choco.png",
+    image: "/images/products/bun_cake_choco.webp",
   },
   {
     name: "Bun Cake Lotus (24 pcs)",
@@ -201,7 +201,7 @@ const products = [
     price: 90,
     available: true,
     featured: true,
-    image: "/images/products/bun_cake_pistachio.png",
+    image: "/images/products/bun_cake_pistachio.webp",
   },
   {
     name: "Bun Cake Pistachio (12 pcs)",
@@ -212,7 +212,7 @@ const products = [
     price: 45,
     available: true,
     featured: false,
-    image: "/images/products/bun_cake_pistachio.png",
+    image: "/images/products/bun_cake_pistachio.webp",
   },
   {
     name: "Bun Cake Mix (24 pcs)",
