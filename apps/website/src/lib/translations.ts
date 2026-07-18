@@ -152,7 +152,7 @@ export const translations = {
       deliverTo: "We'll deliver to your address",
       backToCart: "Back to Cart",
       fullName: "Full Name",
-      namePlaceholder: "Ahmed Mohamed",
+      namePlaceholder: "Enter Name",
       phone: "Phone Number",
       phonePlaceholder: "01xxxxxxxxx",
       address: "Delivery Address",
