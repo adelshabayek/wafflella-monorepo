@@ -1,8 +1,0 @@
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd ../.. && pnpm turbo run build --filter=@wafflella/dashboard",
-  "installCommand": "cd ../.. && pnpm install",
-  "outputDirectory": ".next",
-  "framework": "nextjs",
-  "ignoreCommand": "npx turbo-ignore @wafflella/dashboard"
-}
