@@ -94,7 +94,7 @@ export function AboutSection() {
             {/* Values Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {t.about.values.map(({ title, description }, index) => {
-                const Icon = valuesIcons[index];
+                const Icon = valuesIcons[index] as React.ElementType;
                 return (
                   <motion.div
                     key={title}
@@ -105,7 +105,7 @@ export function AboutSection() {
                     className="flex items-start gap-3 p-4 rounded-2xl bg-brand-background border border-brand-border hover:border-brand-secondary transition-colors duration-200"
                   >
                     <div className="w-9 h-9 rounded-xl bg-brand-primary-light flex items-center justify-center flex-shrink-0">
-                      <Icon size={16} className="text-brand-primary" />
+                      {Icon && <Icon size={16} className="text-brand-primary" />}
                     </div>
                     <div>
                       <div className="font-semibold text-brand-text text-sm">{title}</div>

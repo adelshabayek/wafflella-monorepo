@@ -10,6 +10,14 @@ export const metadata: Metadata = {
   },
   description: "WAFFLELLA Admin Dashboard — Manage your menu, products, and settings.",
   robots: { index: false, follow: false },
+  icons: {
+    icon: [
+      { url: "/images/logo.jpg" },
+    ],
+    apple: [
+      { url: "/images/logo.jpg" },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

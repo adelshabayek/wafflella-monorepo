@@ -52,7 +52,7 @@ export const metadata: Metadata = {
       "Experience the finest waffles, chocolate desserts, coffee, and cold drinks at WAFFLELLA.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/images/logo.jpg",
         width: 1200,
         height: 630,
         alt: "WAFFLELLA Premium Dessert Shop",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     title: "WAFFLELLA — Premium Dessert Shop",
     description:
       "Experience the finest waffles, chocolate desserts, coffee, and cold drinks at WAFFLELLA.",
-    images: ["/og-image.jpg"],
+    images: ["/images/logo.jpg"],
   },
   robots: {
     index: true,
@@ -78,8 +78,13 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: '/images/logo.jpg' },
+      new URL('/images/logo.jpg', 'https://wafflella.com'),
+    ],
+    apple: [
+      { url: '/images/logo.jpg' },
+    ],
   },
 };
 
