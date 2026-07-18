@@ -18,6 +18,7 @@ export interface ShopSettings {
 export interface Category {
   id: string;
   name: string;
+  nameAr?: string;
   order: number;
   icon?: string;
 }
@@ -27,8 +28,10 @@ export interface Category {
 export interface Product {
   id: string;
   name: string;
+  nameAr?: string;
   categoryId: string;
   description: string;
+  descriptionAr?: string;
   price: number;
   image: string;
   available: boolean;
