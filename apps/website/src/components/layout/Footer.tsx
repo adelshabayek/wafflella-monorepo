@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Instagram, Facebook, Phone, MapPin, Heart } from "lucide-react";
+import { Instagram, Facebook, Phone, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useSettings } from "@wafflella/hooks";
 

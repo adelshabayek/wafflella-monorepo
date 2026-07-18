@@ -13,7 +13,7 @@ import { useSettings } from "@wafflella/hooks";
 export function Navbar() {
   const pathname = usePathname();
   const { totalItems, open } = useCart();
-  const { lang, t, toggleLanguage, isRTL } = useLanguage();
+  const { lang, t, toggleLanguage } = useLanguage();
   const { data: settings } = useSettings();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);

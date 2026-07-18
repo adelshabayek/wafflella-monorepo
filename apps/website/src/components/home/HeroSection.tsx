@@ -20,7 +20,7 @@ const itemVariants = {
 };
 
 export function HeroSection() {
-  const { t, isRTL } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <section

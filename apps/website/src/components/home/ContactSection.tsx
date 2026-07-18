@@ -5,13 +5,7 @@ import { Phone, MessageCircle, Facebook, Instagram, MapPin } from "lucide-react"
 import { useSettings } from "@wafflella/hooks";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const socialIcons = {
-  phone: Phone,
-  whatsapp: MessageCircle,
-  facebook: Facebook,
-  instagram: Instagram,
-  maps: MapPin,
-};
+
 
 export function ContactSection() {
   const { data: settings } = useSettings();
