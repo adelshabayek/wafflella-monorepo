@@ -323,6 +323,6 @@ export const translations = {
         "تم فتح واتساب مع تفاصيل طلبك الكامل. أكمل المحادثة للتأكيد!",
     },
   },
-} as const;
+};
 
 export type Translations = typeof translations.en;
