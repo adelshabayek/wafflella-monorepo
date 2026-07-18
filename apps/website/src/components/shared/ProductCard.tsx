@@ -99,29 +99,29 @@ export const ProductCard = memo(function ProductCard({ product, index = 0, varia
             </span>
             <span className="text-brand-muted text-sm ml-1">EGP</span>
           </div>
-          <div className="flex items-center gap-1.5" dir="ltr">
-            {/* Quantity Selector */}
-            <div className="flex items-center">
+          <div className="flex items-center gap-2" dir="ltr">
+            {/* Premium Quantity Pill */}
+            <div className="flex items-center bg-brand-background/50 border border-brand-border/60 rounded-xl p-1 shadow-sm backdrop-blur-sm">
               <button
                 onClick={() => setQty(Math.max(1, qty - 1))}
-                className="w-8 h-8 rounded-xl bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:border-brand-primary hover:text-brand-primary transition-colors shadow-sm"
+                className="w-7 h-7 rounded-lg flex items-center justify-center text-brand-muted hover:bg-white hover:text-brand-primary hover:shadow-sm transition-all active:scale-95"
                 aria-label={`Decrease quantity of ${name}`}
               >
-                <Minus size={14} />
+                <Minus size={14} strokeWidth={2.5} />
               </button>
-              <span className="w-6 text-center text-sm font-bold text-brand-text">
+              <span className="w-7 text-center text-sm font-bold text-brand-text tabular-nums">
                 {qty}
               </span>
               <button
                 onClick={() => setQty(qty + 1)}
-                className="w-8 h-8 rounded-xl bg-brand-primary-light border border-brand-primary/20 text-brand-primary flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all shadow-sm"
+                className="w-7 h-7 rounded-lg flex items-center justify-center text-brand-primary bg-brand-primary-light/60 hover:bg-brand-primary hover:text-white hover:shadow-sm transition-all active:scale-95"
                 aria-label={`Increase quantity of ${name}`}
               >
-                <Plus size={14} />
+                <Plus size={14} strokeWidth={2.5} />
               </button>
             </div>
 
-            {/* Add to Cart Button */}
+            {/* Premium Add Button */}
             <button
               onClick={() => {
                 if (product.available) {
@@ -132,14 +132,14 @@ export const ProductCard = memo(function ProductCard({ product, index = 0, varia
               }}
               disabled={!product.available}
               className={cn(
-                "flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-200 ml-1",
+                "flex items-center justify-center w-11 h-11 rounded-xl transition-all duration-300 ml-1",
                 product.available
-                  ? "bg-gradient-brand text-white hover:opacity-90 shadow-soft hover:shadow-card-hover hover:scale-105 active:scale-95"
+                  ? "bg-gradient-brand text-white shadow-soft hover:shadow-card-hover hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
                   : "bg-brand-border text-brand-muted cursor-not-allowed"
               )}
               aria-label={`Add ${name} to cart`}
             >
-              <ShoppingBag size={16} />
+              <ShoppingBag size={18} strokeWidth={2.5} />
             </button>
           </div>
         </div>
