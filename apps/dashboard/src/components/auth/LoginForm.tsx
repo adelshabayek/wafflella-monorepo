@@ -36,14 +36,16 @@ export function LoginForm() {
       toast.success("Welcome back!");
       router.push("/dashboard");
     } catch (error: unknown) {
-      const message =
-        error instanceof Error ? error.message : "Invalid credentials";
-      if (message.includes("invalid-credential") || message.includes("wrong-password")) {
+      // Show the real Firebase error code for debugging
+      const code = (error as { code?: string })?.code ?? "unknown";
+      const message = error instanceof Error ? error.message : "Invalid credentials";
+      console.error("Firebase auth error:", code, message);
+      if (code === "auth/invalid-credential" || code === "auth/wrong-password" || code === "auth/user-not-found") {
         setError("password", { message: "Invalid email or password" });
       } else {
-        setError("email", { message: "Login failed. Please try again." });
+        setError("email", { message: `Login failed: ${code}` });
       }
-      toast.error("Login failed");
+      toast.error(`Login failed: ${code}`);
     }
   };
 
