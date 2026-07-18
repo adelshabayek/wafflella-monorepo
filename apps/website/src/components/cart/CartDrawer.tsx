@@ -263,7 +263,7 @@ function CartItems({ onProceed }: { onProceed: () => void }) {
               >
                 <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-brand-primary-light">
                   <Image
-                    src={item.product.image || PLACEHOLDER}
+                    src={item.product.image ? item.product.image.replace('.png', '.webp') : PLACEHOLDER}
                     alt={name}
                     width={56}
                     height={56}
