@@ -19,18 +19,18 @@ const PLACEHOLDER =
 
 const WHATSAPP_NUMBER = "201020417971";
 
-const orderSchema = z.object({
-  name: z.string().min(2, "Please enter your full name"),
-  phone: z.string().min(8, "Please enter a valid phone number"),
-  address: z.string().min(5, "Please enter your delivery address"),
-});
-
-type OrderFormData = z.infer<typeof orderSchema>;
 
 function OrderForm({ onBack }: { onBack: () => void }) {
   const { items, totalPrice, clear, close } = useCart();
   const { t, isRTL } = useLanguage();
   const [submitted, setSubmitted] = useState(false);
+
+  const orderSchema = z.object({
+    name: z.string().min(2, t.cart.nameError),
+    phone: z.string().min(8, t.cart.phoneError),
+    address: z.string().min(5, t.cart.addressError),
+  });
+  type OrderFormData = z.infer<typeof orderSchema>;
 
   const {
     register,

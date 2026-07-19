@@ -163,7 +163,24 @@ export const translations = {
       orderSent: "Order Sent! 🎉",
       orderSentDesc:
         "Your WhatsApp just opened with your full order. Complete the chat to confirm!",
+      nameError: "Please enter your full name",
+      phoneError: "Please enter a valid phone number",
+      addressError: "Please enter your delivery address",
     },
+
+    // ── Product ──
+    product: {
+      unavailable: "Unavailable",
+      featured: "Featured",
+    },
+
+    // ── WhatsApp ──
+    whatsapp: {
+      chatTooltip: "Chat with us!",
+    },
+
+    // ── Footer Categories ──
+    footerCategories: ["Waffle", "Bun Cake"],
   },
 
   ar: {
@@ -321,7 +338,24 @@ export const translations = {
       orderSent: "تم إرسال الطلب! 🎉",
       orderSentDesc:
         "تم فتح واتساب مع تفاصيل طلبك الكامل. أكمل المحادثة للتأكيد!",
+      nameError: "الرجاء إدخال اسمك الكامل",
+      phoneError: "الرجاء إدخال رقم هاتف صحيح",
+      addressError: "الرجاء إدخال عنوان التوصيل",
     },
+
+    // ── Product ──
+    product: {
+      unavailable: "غير متاح",
+      featured: "مميز",
+    },
+
+    // ── WhatsApp ──
+    whatsapp: {
+      chatTooltip: "تواصل معنا!",
+    },
+
+    // ── Footer Categories ──
+    footerCategories: ["وافل", "بن كيك"],
   },
 };
 

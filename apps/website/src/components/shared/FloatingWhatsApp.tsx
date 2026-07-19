@@ -3,12 +3,14 @@
 import { useEffect, useState } from "react";
 import { useSettings } from "@wafflella/hooks";
 import { useCart } from "@/contexts/CartContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function FloatingWhatsApp() {
   const { data: settings } = useSettings();
   const { isOpen } = useCart();
+  const { isRTL, t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -28,7 +30,7 @@ export function FloatingWhatsApp() {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}
           transition={{ type: "spring", bounce: 0.4, duration: 0.6 }}
-          className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2"
+          className={`fixed bottom-6 z-50 flex flex-col gap-2 ${isRTL ? "left-6 items-start" : "right-6 items-end"}`}
           role="complementary"
           aria-label="WhatsApp contact"
         >
@@ -36,13 +38,13 @@ export function FloatingWhatsApp() {
           <AnimatePresence>
             {showTooltip && (
               <motion.div
-                initial={{ opacity: 0, x: 10, scale: 0.9 }}
+                initial={{ opacity: 0, x: isRTL ? -10 : 10, scale: 0.9 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: 10, scale: 0.9 }}
+                exit={{ opacity: 0, x: isRTL ? -10 : 10, scale: 0.9 }}
                 transition={{ duration: 0.2 }}
                 className="bg-white text-brand-text text-sm font-medium px-4 py-2 rounded-2xl shadow-float border border-brand-border whitespace-nowrap"
               >
-                💬 Chat with us!
+                💬 {t.whatsapp.chatTooltip}
               </motion.div>
             )}
           </AnimatePresence>

@@ -19,10 +19,7 @@ export function Footer() {
     { href: "/contact", label: t.nav.contact },
   ];
 
-  const categories = [
-    "Waffle",
-    "Bun Cake",
-  ];
+  const categories = t.footerCategories;
 
   return (
     <footer

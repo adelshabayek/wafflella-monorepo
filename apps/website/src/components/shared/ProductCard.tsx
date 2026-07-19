@@ -21,7 +21,7 @@ const PLACEHOLDER_IMAGE =
 
 export const ProductCard = memo(function ProductCard({ product, index = 0, variant = "default" }: ProductCardProps) {
   const { add } = useCart();
-  const { isRTL } = useLanguage();
+  const { isRTL, t } = useLanguage();
   const [qty, setQty] = useState(1);
 
   const name = isRTL && product.nameAr ? product.nameAr : product.name;
@@ -72,12 +72,12 @@ export const ProductCard = memo(function ProductCard({ product, index = 0, varia
         {/* Availability Badge */}
         {!product.available && (
           <div className="absolute top-3 ltr:left-3 rtl:right-3 bg-white/90 backdrop-blur-sm text-brand-muted text-xs font-medium px-3 py-1 rounded-full">
-            Unavailable
+            {t.product.unavailable}
           </div>
         )}
         {product.featured && product.available && (
           <div className="absolute top-3 ltr:left-3 rtl:right-3 bg-brand-primary text-white text-xs font-medium px-3 py-1 rounded-full shadow-soft">
-            ✦ Featured
+            ✦ {t.product.featured}
           </div>
         )}
       </div>

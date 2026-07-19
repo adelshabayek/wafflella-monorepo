@@ -140,9 +140,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─── RTL Overrides ──────────────────────────────────────────────────────────── */
-html[dir="rtl"] {
-  /* Set Arabic font family if you want to differentiate, but standard sans-serif/system-ui works well */
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+html[dir="rtl"] body {
+  font-family: var(--font-cairo), system-ui, -apple-system, sans-serif;
+}
+
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] h5,
+html[dir="rtl"] h6 {
+  font-family: var(--font-cairo), system-ui, sans-serif;
 }
 
 /* Ensure specific alignments are respected in RTL */
@@ -151,4 +159,9 @@ html[dir="rtl"] .text-left {
 }
 html[dir="rtl"] .text-right {
   text-align: left;
+}
+
+/* RTL: flip tracking/letter-spacing utilities that feel weird in Arabic */
+html[dir="rtl"] .tracking-widest {
+  letter-spacing: 0;
 }

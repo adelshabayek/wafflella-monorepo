@@ -118,12 +118,12 @@ export function Navbar() {
           <button
             onClick={toggleLanguage}
             id="lang-toggle"
-            className="hidden items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-border bg-white hover:border-brand-primary hover:text-brand-primary text-brand-muted text-xs font-bold transition-all duration-200"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-border bg-white hover:border-brand-primary hover:text-brand-primary text-brand-muted text-xs font-bold transition-all duration-200"
             aria-label={lang === "en" ? "Switch to Arabic" : "Switch to English"}
           >
-            <span className={cn("transition-all", lang === "en" ? "text-brand-primary" : "text-brand-muted")}>EN</span>
-            <span className="text-brand-border">|</span>
             <span className={cn("transition-all", lang === "ar" ? "text-brand-primary" : "text-brand-muted")}>ع</span>
+            <span className="text-brand-border">|</span>
+            <span className={cn("transition-all", lang === "en" ? "text-brand-primary" : "text-brand-muted")}>EN</span>
           </button>
 
           {/* Cart */}
@@ -201,11 +201,11 @@ export function Navbar() {
                   {/* Lang toggle mobile */}
                   <button
                     onClick={toggleLanguage}
-                    className="hidden items-center gap-1.5 px-4 py-3 bg-white border border-brand-border rounded-xl text-xs font-bold hover:border-brand-primary transition-colors duration-200"
+                    className="flex items-center gap-1.5 px-4 py-3 bg-white border border-brand-border rounded-xl text-xs font-bold hover:border-brand-primary transition-colors duration-200"
                   >
-                    <span className={cn(lang === "en" ? "text-brand-primary" : "text-brand-muted")}>EN</span>
-                    <span className="text-brand-border">|</span>
                     <span className={cn(lang === "ar" ? "text-brand-primary" : "text-brand-muted")}>ع</span>
+                    <span className="text-brand-border">|</span>
+                    <span className={cn(lang === "en" ? "text-brand-primary" : "text-brand-muted")}>EN</span>
                   </button>
                   <button
                     onClick={open}
