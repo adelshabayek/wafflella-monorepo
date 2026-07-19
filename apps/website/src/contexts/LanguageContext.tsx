@@ -19,33 +19,18 @@ interface LanguageContextValue {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-const STORAGE_KEY = "wafflella-lang";
+
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>("ar");
 
-  // Hydrate from localStorage on mount
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY) as Lang | null;
-      if (stored === "ar" || stored === "en") {
-        setLang(stored);
-      }
-    } catch {
-      // ignore
-    }
-  }, []);
+
 
   // Apply lang + dir to <html> on every change
   useEffect(() => {
     const html = document.documentElement;
     html.setAttribute("lang", lang);
     html.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
-    try {
-      localStorage.setItem(STORAGE_KEY, lang);
-    } catch {
-      // ignore
-    }
   }, [lang]);
 
   const toggleLanguage = useCallback(() => {

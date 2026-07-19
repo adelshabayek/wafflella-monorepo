@@ -105,7 +105,7 @@ export function HeroSection() {
           {/* Stats */}
           <motion.div
             variants={itemVariants}
-            className="flex items-center gap-8 mt-12 justify-center lg:justify-start rtl:lg:justify-start"
+            className="flex flex-wrap items-center gap-4 sm:gap-8 mt-12 justify-center lg:justify-start rtl:lg:justify-start"
           >
             {t.hero.stats.map(({ value, label }) => (
               <div key={label} className="text-center lg:text-start rtl:text-right">
@@ -152,12 +152,12 @@ export function HeroSection() {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute -top-4 right-8 glass shadow-float rounded-2xl px-4 py-3 flex items-center gap-2 rtl:left-8 rtl:right-auto"
+              className="absolute -top-2 sm:-top-4 right-2 sm:right-8 glass shadow-float rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-3 flex items-center gap-1.5 sm:gap-2 rtl:left-2 rtl:sm:left-8 rtl:right-auto z-10"
             >
-              <span className="text-2xl">☕</span>
+              <span className="text-xl sm:text-2xl">☕</span>
               <div>
-                <div className="text-xs font-semibold text-brand-text">{t.hero.floatingCoffee}</div>
-                <div className="text-xs text-brand-muted">{t.hero.floatingCoffeeDesc}</div>
+                <div className="text-[10px] sm:text-xs font-semibold text-brand-text leading-tight">{t.hero.floatingCoffee}</div>
+                <div className="text-[9px] sm:text-xs text-brand-muted leading-tight">{t.hero.floatingCoffeeDesc}</div>
               </div>
             </motion.div>
 
@@ -165,12 +165,12 @@ export function HeroSection() {
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-4 left-8 glass shadow-float rounded-2xl px-4 py-3 flex items-center gap-2 rtl:right-8 rtl:left-auto"
+              className="absolute -bottom-2 sm:-bottom-4 left-2 sm:left-8 glass shadow-float rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-3 flex items-center gap-1.5 sm:gap-2 rtl:right-2 rtl:sm:right-8 rtl:left-auto z-10"
             >
-              <span className="text-2xl">🍫</span>
+              <span className="text-xl sm:text-2xl">🍫</span>
               <div>
-                <div className="text-xs font-semibold text-brand-text">{t.hero.floatingChoco}</div>
-                <div className="text-xs text-brand-muted">{t.hero.floatingChocoDesc}</div>
+                <div className="text-[10px] sm:text-xs font-semibold text-brand-text leading-tight">{t.hero.floatingChoco}</div>
+                <div className="text-[9px] sm:text-xs text-brand-muted leading-tight">{t.hero.floatingChocoDesc}</div>
               </div>
             </motion.div>
 
@@ -178,10 +178,10 @@ export function HeroSection() {
             <motion.div
               animate={{ x: [0, -8, 0] }}
               transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
-              className="absolute top-1/2 -left-6 -translate-y-1/2 bg-gradient-brand shadow-float rounded-2xl px-4 py-3 rtl:-right-6 rtl:-left-auto border border-white/20"
+              className="absolute top-1/2 -left-2 sm:-left-6 -translate-y-1/2 bg-gradient-brand shadow-float rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-3 rtl:-right-2 rtl:sm:-right-6 rtl:-left-auto border border-white/20 z-10"
             >
-              <div className="text-white text-xs font-semibold">{t.hero.floatingOffer}</div>
-              <div className="text-white/80 text-xs">{t.hero.floatingOfferDesc}</div>
+              <div className="text-white text-[10px] sm:text-xs font-semibold leading-tight">{t.hero.floatingOffer}</div>
+              <div className="text-white/80 text-[9px] sm:text-xs leading-tight">{t.hero.floatingOfferDesc}</div>
             </motion.div>
           </div>
         </motion.div>

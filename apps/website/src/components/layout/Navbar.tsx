@@ -171,7 +171,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden glass-dark border-t border-brand-border"
+            className="md:hidden overflow-hidden bg-white/95 backdrop-blur-md border-t border-brand-border shadow-card absolute top-full left-0 right-0 z-40"
           >
             <ul
               className="container-narrow py-4 flex flex-col gap-1"
@@ -197,28 +197,30 @@ export function Navbar() {
                 );
               })}
               <li>
-                <div className="flex gap-2 mt-2 flex-wrap">
-                  {/* Lang toggle mobile */}
-                  <button
-                    onClick={toggleLanguage}
-                    className="flex items-center gap-1.5 px-4 py-3 bg-white border border-brand-border rounded-xl text-xs font-bold hover:border-brand-primary transition-colors duration-200"
-                  >
-                    <span className={cn(lang === "ar" ? "text-brand-primary" : "text-brand-muted")}>ع</span>
-                    <span className="text-brand-border">|</span>
-                    <span className={cn(lang === "en" ? "text-brand-primary" : "text-brand-muted")}>EN</span>
-                  </button>
-                  <button
-                    onClick={open}
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-brand-primary-light text-brand-primary text-sm font-semibold rounded-xl hover:bg-brand-primary-light/80 transition-colors duration-200"
-                  >
-                    <ShoppingCart size={18} />
-                    {t.nav.cart} {totalItems > 0 && `(${totalItems})`}
-                  </button>
+                <div className="flex flex-col gap-3 mt-4">
+                  <div className="flex gap-3">
+                    {/* Lang toggle mobile */}
+                    <button
+                      onClick={toggleLanguage}
+                      className="flex-1 flex items-center justify-center gap-1.5 px-4 py-3 bg-white border border-brand-border rounded-xl text-xs font-bold hover:border-brand-primary transition-colors duration-200"
+                    >
+                      <span className={cn(lang === "ar" ? "text-brand-primary" : "text-brand-muted")}>ع</span>
+                      <span className="text-brand-border">|</span>
+                      <span className={cn(lang === "en" ? "text-brand-primary" : "text-brand-muted")}>EN</span>
+                    </button>
+                    <button
+                      onClick={open}
+                      className="flex-[2] flex items-center justify-center gap-2 px-4 py-3 bg-brand-primary-light text-brand-primary text-sm font-semibold rounded-xl hover:bg-brand-primary-light/80 transition-colors duration-200"
+                    >
+                      <ShoppingCart size={18} />
+                      {t.nav.cart} {totalItems > 0 && `(${totalItems})`}
+                    </button>
+                  </div>
                   <Link
                     href="/menu"
                     onClick={() => setIsMobileOpen(false)}
                     id="mobile-order-cta"
-                    className="flex-[2] block px-4 py-3 bg-gradient-brand text-white text-sm font-semibold rounded-xl text-center hover:opacity-90 transition-colors duration-200"
+                    className="w-full block px-4 py-3 bg-gradient-brand text-white text-sm font-semibold rounded-xl text-center hover:opacity-90 transition-colors duration-200"
                   >
                     {t.nav.orderNow}
                   </Link>

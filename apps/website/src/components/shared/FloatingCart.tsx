@@ -1,22 +1,24 @@
 "use client";
 
 import { useCart } from "@/contexts/CartContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { ShoppingCart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function FloatingCart() {
   const { totalItems, open, isOpen } = useCart();
+  const { isRTL } = useLanguage();
 
   return (
     <AnimatePresence>
       {totalItems > 0 && !isOpen && (
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0, opacity: 0 }}
-          transition={{ type: "spring", bounce: 0.4, duration: 0.6 }}
-          className="fixed bottom-[96px] right-6 z-40 flex flex-col items-end gap-2"
-        >
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ type: "spring", bounce: 0.4, duration: 0.6 }}
+            className={`fixed bottom-[96px] z-40 flex flex-col gap-2 ${isRTL ? "left-6 items-start" : "right-6 items-end"}`}
+          >
           <motion.button
             onClick={open}
             whileHover={{ scale: 1.1 }}
