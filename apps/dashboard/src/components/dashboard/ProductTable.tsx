@@ -26,6 +26,8 @@ function EditProductModal({
   const [name, setName] = useState(product.name);
   const [nameAr, setNameAr] = useState(product.nameAr || "");
   const [price, setPrice] = useState(String(product.price));
+  const [description, setDescription] = useState(product.description || "");
+  const [descriptionAr, setDescriptionAr] = useState(product.descriptionAr || "");
 
   const mutation = useMutation({
     mutationFn: (data: Partial<Product>) => updateProduct(product.id, data),
@@ -58,9 +60,13 @@ function EditProductModal({
     if (!name.trim()) { toast.error("English name is required"); return; }
     const parsedPrice = parseFloat(price);
     if (isNaN(parsedPrice) || parsedPrice < 0) { toast.error("Valid price is required"); return; }
-    const trimmedNameAr = nameAr.trim();
-    const data: Partial<Product> = { name: name.trim(), price: parsedPrice };
-    if (trimmedNameAr) data.nameAr = trimmedNameAr;
+    const data: Partial<Product> = {
+      name: name.trim(),
+      price: parsedPrice,
+      description: description.trim(),
+    };
+    if (nameAr.trim()) data.nameAr = nameAr.trim();
+    if (descriptionAr.trim()) data.descriptionAr = descriptionAr.trim();
     mutation.mutate(data);
   };
 
@@ -69,15 +75,19 @@ function EditProductModal({
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden"
+        className="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden"
       >
         <div className="p-5 border-b border-gray-100 flex justify-between items-center">
-          <h3 className="font-bold text-gray-900">Edit Product Details</h3>
+          <div>
+            <h3 className="font-bold text-gray-900">Edit Product Details</h3>
+            <p className="text-xs text-gray-400 mt-0.5">Changes appear on the website instantly</p>
+          </div>
           <button onClick={onClose} className="p-1 rounded-lg text-gray-400 hover:text-gray-900 hover:bg-gray-100 transition-colors">
             <X size={18} />
           </button>
         </div>
-        <form onSubmit={save} className="p-5 space-y-4">
+        <form onSubmit={save} className="p-5 space-y-4 max-h-[80vh] overflow-y-auto">
+          {/* Names */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Name (English)</label>
@@ -102,6 +112,38 @@ function EditProductModal({
               />
             </div>
           </div>
+
+          {/* Descriptions */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                Description (English)
+              </label>
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                rows={3}
+                className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all resize-none"
+                placeholder="e.g. 24 waffle pieces with chocolate sauce"
+                dir="ltr"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                Description (Arabic)
+              </label>
+              <textarea
+                value={descriptionAr}
+                onChange={(e) => setDescriptionAr(e.target.value)}
+                rows={3}
+                className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all resize-none text-right"
+                placeholder="e.g. 24 قطعة وافل بصوص شوكولاتة"
+                dir="rtl"
+              />
+            </div>
+          </div>
+
+          {/* Price */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1.5">Price (EGP)</label>
             <input
@@ -114,6 +156,7 @@ function EditProductModal({
               placeholder="e.g. 35"
             />
           </div>
+
           <div className="pt-2 flex justify-end gap-2">
             <button
               type="button"
@@ -162,6 +205,22 @@ const ProductRow = memo(({
       {/* Name AR */}
       <td className="px-2 py-3.5 text-left" dir="rtl">
         <span className="text-gray-500 text-sm whitespace-nowrap">{product.nameAr || "—"}</span>
+      </td>
+
+      {/* Desc EN */}
+      <td className="px-2 py-3.5 hidden xl:table-cell max-w-[200px]">
+        {product.description
+          ? <span className="text-gray-600 text-sm leading-relaxed line-clamp-2 block">{product.description}</span>
+          : <span className="italic text-gray-300 text-xs">No description</span>
+        }
+      </td>
+
+      {/* Desc AR */}
+      <td className="px-2 py-3.5 hidden xl:table-cell max-w-[200px]" dir="rtl">
+        {product.descriptionAr
+          ? <span className="text-gray-600 text-sm leading-relaxed line-clamp-2 block">{product.descriptionAr}</span>
+          : <span className="italic text-gray-300 text-xs">لا يوجد وصف</span>
+        }
       </td>
 
       {/* Price */}
@@ -350,8 +409,10 @@ export function ProductTable() {
               <table className="w-full" role="table" aria-label={`${getCategoryName(catId)} products`}>
                 <thead>
                   <tr className="border-b border-gray-50">
-                    <th className="text-left pl-5 pr-2 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider w-auto">Name (EN)</th>
-                    <th className="text-left px-2 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider w-auto">Name (AR)</th>
+                    <th className="text-left pl-5 pr-2 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Name (EN)</th>
+                    <th className="text-left px-2 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Name (AR)</th>
+                    <th className="text-left px-2 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider hidden xl:table-cell">Desc (EN)</th>
+                    <th className="text-left px-2 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider hidden xl:table-cell">Desc (AR)</th>
                     <th className="text-left px-5 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Price</th>
                     <th className="text-left px-5 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider hidden sm:table-cell">Status</th>
                     <th className="text-right px-5 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider w-16"></th>

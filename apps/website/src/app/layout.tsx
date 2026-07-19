@@ -9,7 +9,7 @@ import { FloatingCart } from "@/components/shared/FloatingCart";
 import { CartProvider } from "@/contexts/CartContext";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import { Toaster } from "sonner";
+import { ResponsiveToaster } from "@/components/shared/ResponsiveToaster";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -106,8 +106,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${cairo.variable}`}>
-      <body className="min-h-screen flex flex-col bg-brand-background antialiased">
+    <html lang="ar" dir="rtl" className={`${inter.variable} ${playfair.variable} ${cairo.variable}`}>
+      <body className="min-h-screen flex flex-col bg-brand-background antialiased overflow-x-hidden">
         <QueryProvider>
           <LanguageProvider>
             <CartProvider>
@@ -117,16 +117,7 @@ export default function RootLayout({
               <Footer />
               <FloatingWhatsApp />
               <FloatingCart />
-              <Toaster
-                position="top-right"
-                toastOptions={{
-                  style: {
-                    background: "#fff",
-                    border: "1px solid #F0E0DA",
-                    color: "#2D2D2D",
-                  },
-                }}
-              />
+              <ResponsiveToaster />
             </CartProvider>
           </LanguageProvider>
         </QueryProvider>

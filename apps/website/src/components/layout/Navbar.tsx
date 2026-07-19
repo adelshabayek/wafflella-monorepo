@@ -91,7 +91,7 @@ export function Navbar() {
                 <Link
                   href={href}
                   className={cn(
-                    "relative px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-200",
+                    "relative block px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-200",
                     isActive
                       ? "text-brand-primary"
                       : "text-brand-muted hover:text-brand-text"
@@ -183,6 +183,7 @@ export function Navbar() {
                   <li key={href}>
                     <Link
                       href={href}
+                      onClick={() => setIsMobileOpen(false)}
                       className={cn(
                         "block px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200",
                         isActive

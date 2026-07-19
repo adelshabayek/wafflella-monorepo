@@ -16,126 +16,120 @@ export const translations = {
 
     // ── Hero ──
     hero: {
-      badge: "Premium Desserts",
-      headline1: "Every Bite is",
-      headline2: "Pure Joy",
+      badge: "Sweet Cravings? 🧇",
+      headline1: "A World of Joy",
+      headline2: "In Every Bite!",
       description:
-        "Handcrafted waffles, rich chocolate desserts, and premium beverages — all made with the finest ingredients and a whole lot of love.",
-      orderNow: "Order Now",
-      browseMenu: "Browse Menu",
+        "Calling all waffle and pancake lovers! Crispy on the outside, fluffy on the inside, and drenched in the finest melted chocolate. Ready to treat yourself?",
+      orderNow: "Let's Order!",
+      browseMenu: "See Menu",
       stats: [
-        { value: "30+", label: "Menu Items" },
-        { value: "5★", label: "Rating" },
-        { value: "1K+", label: "Happy Customers" },
+        { value: "30+", label: "Crazy Creations" },
+        { value: "5★", label: "Awesome Rating" },
+        { value: "1K+", label: "Happy Foodies" },
       ],
-      floatingCoffee: "Premium Coffee",
-      floatingCoffeeDesc: "Fresh brewed",
-      floatingChoco: "Chocolate",
-      floatingChocoDesc: "Rich & creamy",
-      floatingOffer: "🎉 Special Offers",
-      floatingOfferDesc: "Every day!",
-      scroll: "Scroll",
+      floatingCoffee: "Extra Chocolate",
+      floatingCoffeeDesc: "Melted goodness",
+      floatingChoco: "Fluffy Pancakes",
+      floatingChocoDesc: "Melts in your mouth",
+      floatingOffer: "🎉 Mega Offers",
+      floatingOfferDesc: "Don't miss out!",
+      scroll: "Scroll Down",
     },
 
     // ── Featured Products ──
     featured: {
-      badge: "Chef's Selection",
-      title: "Featured Delights",
-      description:
-        "Handpicked favorites loved by our customers — crafted fresh daily.",
-      viewAll: "View Full Menu",
-      empty: "No featured items available right now.",
+      badge: "Our Masterpieces",
+      title: "Menu Superstars",
+      description: "These are our absolute best-sellers. Warning: highly addictive!",
+      viewAll: "Gimme the Full Menu",
+      empty: "We're cooking up some new crazy creations, stay tuned!",
     },
 
     // ── Categories ──
     categories: {
-      badge: "Explore",
-      title: "Our Categories",
-      description:
-        "From golden waffles to rich chocolate — discover our full range of premium desserts.",
+      badge: "Pick Your Vibe",
+      title: "What's Your Craving Today?",
+      description: "Feeling like a crispy golden waffle or a super fluffy pancake? Choose your mood!",
     },
 
     // ── About ──
     about: {
       badge: "Our Story",
-      title1: "Born from a",
-      titleHighlight: "Passion",
-      title2: "for Desserts",
+      title1: "Started from an",
+      titleHighlight: "Obsession",
+      title2: "with Waffles & Pancakes",
       paragraph1:
-        "WAFFLELLA started with a simple dream — to create desserts so good, every bite feels like a celebration. From our signature golden waffles to our decadent chocolate creations, every item on our menu is crafted with the finest ingredients and an obsession with perfection.",
+        "At WAFFLELLA, it all started with our love for the perfect waffle—crispy edges, fluffy center—and pancakes that feel like sweet little clouds! We took that love and built a menu that will change how you think about desserts.",
       paragraph2:
-        "As a new destination for dessert lovers, we refuse to settle for anything less than extraordinary. We're here to bring a fresh, premium dessert experience to your table.",
+        "We don't just serve waffles and pancakes; we create chocolate-drenched masterpieces that take you on a sweet journey. Every order is made with love and top-tier ingredients to instantly boost your mood.",
       values: [
         {
           title: "Made with Love",
-          description:
-            "Every dessert is handcrafted with care and passion for creating the perfect bite.",
+          description: "Every single waffle and pancake is crafted with care as if we're making it for ourselves.",
         },
         {
-          title: "Premium Ingredients",
-          description:
-            "We source only the finest ingredients to ensure the highest quality in every creation.",
+          title: "Top-Notch Ingredients",
+          description: "No compromises here! We use only the finest original chocolates and toppings for a mind-blowing taste.",
         },
         {
-          title: "Exceptional Quality",
-          description:
-            "Our recipes are perfected through experience and a relentless pursuit of excellence.",
+          title: "Perfect Crunch & Fluff",
+          description: "The secret is in the batter! We've perfected the recipe for the ultimate crunch and fluffiness.",
         },
         {
-          title: "Fresh Daily",
-          description:
-            "Everything is prepared fresh every morning — never frozen, always delicious.",
+          title: "Always Fresh",
+          description: "Our batter is prepared fresh every single day to guarantee that out-of-this-world taste.",
         },
       ],
-      ratedPremium: "Rated Premium",
-      freshTaste: "Fresh Taste",
-      premiumDesserts: "Premium Desserts",
+      ratedPremium: "Mind-Blowing Taste",
+      freshTaste: "Always Fresh",
+      premiumDesserts: "Crazy Creations",
     },
 
     // ── Contact ──
     contact: {
-      badge: "Reach Us",
-      title: "Let's Connect",
+      badge: "Talk to Us",
+      title: "Let's Get in Touch!",
       description:
-        "We'd love to hear from you. Order online, give us a call, or find us on social media.",
-      phone: "Phone",
-      whatsapp: "WhatsApp",
+        "Wanna order? Have a question? Or just want to tell us how much you loved the chocolate? We're all ears!",
+      phone: "Ring Us",
+      whatsapp: "WhatsApp Us",
       facebook: "Facebook",
-      followFacebook: "Follow on Facebook",
+      followFacebook: "Join our FB family",
       instagram: "Instagram",
       findOnMaps: "Find us on Google Maps",
-      openMaps: "Open in Maps",
+      openMaps: "Let's Go!",
     },
 
     // ── Footer ──
     footer: {
       tagline:
-        "Premium desserts crafted with love. Every bite is an experience of quality, taste, and joy.",
-      navigation: "Navigation",
+        "The kings of waffles and pancakes. Where happiness melts in chocolate!",
+      navigation: "Quick Links",
       ourMenu: "Our Menu",
-      contactUs: "Contact Us",
-      findOnMaps: "Find us on Google Maps",
-      rights: "All rights reserved.",
-      madeWith: "Made by",
+      contactUs: "Hit Us Up",
+      findOnMaps: "Where are we?",
+      rights: "All rights reserved to Wafflella.",
+      madeWith: "Made with ❤️ by",
       byAdel: "Dev. Adel Shabayek",
     },
 
     // ── Menu Page ──
     menu: {
-      badge: "Full Collection",
-      title: "Our Menu",
+      badge: "The Full Menu",
+      title: "Pick Your Treat",
       description:
-        "Every item crafted with premium ingredients — explore our complete collection of desserts and beverages.",
-      searchPlaceholder: "Search our menu...",
-      allItems: "All Items",
+        "Crispy waffle or fluffy pancake? Browse the menu and pick whatever fixes your mood today.",
+      searchPlaceholder: "What are you looking for?...",
+      allItems: "Everything",
       showingItems: "Showing",
-      item: "item",
-      items: "items",
+      item: "creation",
+      items: "creations",
       in: "in",
-      noResults: "No results found",
-      noItems: "No items available",
-      noResultsDesc: 'No items match "%s". Try a different search.',
-      noItemsDesc: "Check back soon for new additions!",
+      noResults: "Couldn't find that",
+      noItems: "No creations right now",
+      noResultsDesc: 'Sorry, nothing matches "%s". Try searching for waffles or pancakes!',
+      noItemsDesc: "We're preparing a new killer menu, stay tuned!",
       clearSearch: "Clear Search",
     },
 
@@ -143,44 +137,57 @@ export const translations = {
     cart: {
       title: "Your Cart",
       items: "items",
-      empty: "Your cart is empty",
-      emptyDesc: "Add some delicious items from our menu!",
-      browseMenu: "Browse Menu",
-      total: "Total",
-      proceedBtn: "Proceed to Order",
-      yourDetails: "Your Details",
-      deliverTo: "We'll deliver to your address",
+      empty: "Your cart is super empty",
+      emptyDesc: "What are you waiting for? Go grab some waffles and pancakes!",
+      browseMenu: "Get the Menu",
+      total: "The Bill",
+      proceedBtn: "Let's Confirm the Order",
+      yourDetails: "Your Info",
+      deliverTo: "We'll deliver happiness right to your door",
       backToCart: "Back to Cart",
-      fullName: "Full Name",
-      namePlaceholder: "Enter Name",
+      fullName: "What's your name?",
+      namePlaceholder: "Full Name",
       phone: "Phone Number",
       phonePlaceholder: "01xxxxxxxxx",
-      address: "Delivery Address",
-      addressPlaceholder: "Street, Building, Apartment, City...",
-      orderSummary: "Order Summary",
+      address: "Detailed Address",
+      addressPlaceholder: "Street, Building, Floor, Apartment...",
+      orderSummary: "Double Checked?",
       orderViaWhatsapp: "Order via WhatsApp",
-      whatsappNote: "You'll be redirected to WhatsApp to confirm your order",
-      orderSent: "Order Sent! 🎉",
+      whatsappNote: "We'll pop open WhatsApp to confirm your order in seconds",
+      orderSent: "Order Sent! 🚀",
       orderSentDesc:
-        "Your WhatsApp just opened with your full order. Complete the chat to confirm!",
-      nameError: "Please enter your full name",
-      phoneError: "Please enter a valid phone number",
-      addressError: "Please enter your delivery address",
+        "WhatsApp is open with your order details. Just hit send and we'll reply ASAP!",
+      nameError: "Please tell us your name",
+      phoneError: "That phone number looks weird",
+      addressError: "Give us the full address so we don't get lost",
     },
 
     // ── Product ──
     product: {
-      unavailable: "Unavailable",
-      featured: "Featured",
+      unavailable: "Sold Out 😢",
+      featured: "Must Try!",
+      addedToCart: "added to cart! 🛒",
+    },
+
+    // ── Page Headers ──
+    aboutPage: {
+      badge: "✦ Our Journey",
+      title: "About WAFFLELLA",
+      description: "A story of passion, quality, and an unwavering love for exceptional desserts.",
+    },
+    contactPage: {
+      badge: "✦ Say Hello",
+      title: "Contact Us",
+      description: "We're always happy to hear from you. Reach out via any channel below.",
     },
 
     // ── WhatsApp ──
     whatsapp: {
-      chatTooltip: "Chat with us!",
+      chatTooltip: "Need help?",
     },
 
     // ── Footer Categories ──
-    footerCategories: ["Waffle", "Bun Cake"],
+    footerCategories: ["Waffles", "Pancakes"],
   },
 
   ar: {
@@ -188,174 +195,187 @@ export const translations = {
     nav: {
       home: "الرئيسية",
       menu: "المنيو",
-      about: "من نحن",
-      contact: "تواصل معنا",
-      orderNow: "اطلب الآن",
-      cart: "السلة",
+      about: "قصتنا",
+      contact: "كلمنا",
+      orderNow: "يالا نطلب",
+      cart: "العربية",
     },
 
     // ── Hero ──
     hero: {
-      badge: "حلويات فاخرة",
-      headline1: "كل قضمة",
-      headline2: "بهجة خالصة",
+      badge: "دلع كرشك صح! 🧇",
+      headline1: "عالم من السعادة",
+      headline2: "في كل قطمة",
       description:
-        "وافل محضر بعناية، حلويات شوكولاتة فاخرة، ومشروبات مميزة — كلها مصنوعة بأجود المكونات وبكثير من الحب.",
-      orderNow: "اطلب الآن",
-      browseMenu: "تصفح المنيو",
+        "عشاق الوافل والبان كيك، مكانكم هنا! عجينة هشة ومقرمشة غرقانة في أحلى صوصات الشوكولاتة السايحة. جاهز تدلع نفسك؟",
+      orderNow: "يالا نطلب!",
+      browseMenu: "شوف المنيو",
       stats: [
-        { value: "+50", label: "منتج في المنيو" },
-        { value: "5★", label: "تقييمنا" },
-        { value: "+1K", label: "عميل سعيد" },
+        { value: "+50", label: "اختراع مجنون" },
+        { value: "5★", label: "تقييم العظمة" },
+        { value: "+1K", label: "أكيل مبسوط" },
       ],
-      floatingCoffee: "قهوة فاخرة",
-      floatingCoffeeDesc: "طازجة دائماً",
-      floatingChoco: "شوكولاتة",
-      floatingChocoDesc: "غنية وكريمية",
-      floatingOffer: "🎉 عروض خاصة",
-      floatingOfferDesc: "كل يوم!",
-      scroll: "مرر للأسفل",
+      floatingCoffee: "إكسترا شوكولاتة",
+      floatingCoffeeDesc: "غرقانة وسايحة",
+      floatingChoco: "بان كيك طري",
+      floatingChocoDesc: "بيدوب في البوق",
+      floatingOffer: "🎉 عروض التوفير",
+      floatingOfferDesc: "متتفوتش!",
+      scroll: "انزل كمان",
     },
 
     // ── Featured Products ──
     featured: {
-      badge: "اختيارات الشيف",
-      title: "أبرز الأطباق",
-      description: "أفضل ما لدينا يحبه عملاؤنا — محضر طازج كل يوم.",
-      viewAll: "عرض المنيو كاملاً",
-      empty: "لا توجد منتجات مميزة متاحة حالياً.",
+      badge: "اختراعاتنا",
+      title: "نجوم المنيو",
+      description: "دي أكتر حاجات الناس أدمنتها عندنا، من الآخر كده.. دي خلاصة السعادة!",
+      viewAll: "هات المنيو كله",
+      empty: "بنجهز اختراعات جديدة، خليك قريب!",
     },
 
     // ── Categories ──
     categories: {
-      badge: "استكشف",
-      title: "أقسامنا",
+      badge: "اختار مزاجك",
+      title: "هتاكل إيه النهاردة؟",
       description:
-        "من الوافل الذهبي إلى الشوكولاتة الغنية — اكتشف مجموعتنا الكاملة من الحلويات الفاخرة.",
+        "نفسك في وافل مقرمش ولا بان كيك طري وهش؟ اختار اللي يظبط الدماغ من تشكيلتنا.",
     },
 
     // ── About ──
     about: {
-      badge: "قصتنا",
-      title1: "وُلدنا من",
-      titleHighlight: "شغف",
-      title2: "بالحلويات",
+      badge: "حكايتنا",
+      title1: "بداية",
+      titleHighlight: "الهوس",
+      title2: "بالوافل والبان كيك",
       paragraph1:
-        "بدأت WAFFLELLA بحلم بسيط — تقديم حلويات لا مثيل لها، تجعل كل قضمة احتفالاً. من وافلنا الذهبي المميز إلى إبداعاتنا بالشوكولاتة الفاخرة، كل منتج في منيونا مصنوع بأجود المكونات وشغف لا يتوقف.",
+        "في WAFFLELLA، الحكاية بدأت بحبنا للوافل المظبوط.. اللي مقرمش من بره وطري من جوه، والبان كيك اللي عامل زي السحابة! قررنا ناخد الحب ده ونعمل بيه أجدع منيو هيغير مفهومك عن الحلويات.",
       paragraph2:
-        "كوجهة جديدة لعشاق الحلويات، نحن لا نرضى بأقل من الاستثنائي. نحن هنا لنقدم تجربة حلويات جديدة وفاخرة تليق بك.",
+        "إحنا مش بس بنقدم وافل وبان كيك، إحنا بنعمل اختراعات غرقانة شوكولاتة وصوصات هتاخدك في رحلة تانية خالص. كل طلب بيتعمل بحب بمكونات متتوصاش عشان نظبطلك المود.",
       values: [
         {
-          title: "مصنوع بحب",
-          description: "كل حلوى تُصنع بعناية وشغف لتقديم أفضل تجربة.",
+          title: "شغل بمزاج",
+          description: "كل وافلاية وبان كيكايه بتتعمل بحب واهتمام كأنها لينا مخصوص.",
         },
         {
-          title: "مكونات فاخرة",
-          description: "نستخدم فقط أجود المكونات لضمان أعلى جودة في كل منتج.",
+          title: "خامات من الآخر",
+          description: "مفيش تنازلات هنا! بنستخدم أنضف الخامات والصوصات الأصلية عشان الطعم يضرب في الدماغ.",
         },
         {
-          title: "جودة استثنائية",
-          description: "وصفاتنا تُصقل باستمرار في سعي دؤوب نحو الكمال.",
+          title: "قرمشة وهشاشة",
+          description: "السر كله في العجينة.. ظابطين المقادير بالمللي عشان تاكل أحلى قرمشة وأطرى بان كيك.",
         },
         {
-          title: "طازج يومياً",
-          description: "كل شيء يُحضَّر طازجاً كل صباح — لا تجميد، دائماً لذيذ.",
+          title: "طازة دايماً",
+          description: "العجينة بتتحضر فريش كل يوم عشان الطعم يفضل دايماً في حتة تانية.",
         },
       ],
-      ratedPremium: "تقييم ممتاز",
-      freshTaste: "طعم طازج",
-      premiumDesserts: "حلويات فاخرة",
+      ratedPremium: "طعم يجنن",
+      freshTaste: "دايماً فريش",
+      premiumDesserts: "اختراعاتنا",
     },
 
     // ── Contact ──
     contact: {
-      badge: "تواصل معنا",
-      title: "نحب نسمع منك",
+      badge: "كلمنا",
+      title: "خلينا على تواصل",
       description:
-        "اطلب أونلاين، اتصل بنا، أو تابعنا على وسائل التواصل الاجتماعي.",
-      phone: "هاتف",
-      whatsapp: "واتساب",
+        "عايز تطلب؟ عندك استفسار؟ أو حتى عايز تقولنا رأيك؟ إحنا دايماً هنا عشانك.",
+      phone: "رن علينا",
+      whatsapp: "ابعتلنا واتساب",
       facebook: "فيسبوك",
       followFacebook: "تابعنا على فيسبوك",
       instagram: "إنستجرام",
-      findOnMaps: "ابحث عنا على خرائط جوجل",
-      openMaps: "افتح في الخرائط",
+      findOnMaps: "مكاننا على جوجل ماب",
+      openMaps: "يلا بينا",
     },
 
     // ── Footer ──
     footer: {
       tagline:
-        "حلويات فاخرة مصنوعة بحب. كل قضمة تجربة من الجودة والطعم والبهجة.",
-      navigation: "التنقل",
-      ourMenu: "منيونا",
-      contactUs: "تواصل معنا",
-      findOnMaps: "ابحث عنا على خرائط جوجل",
-      rights: "جميع الحقوق محفوظة.",
-      madeWith: "صُنع بـ",
-      byAdel: "بواسطة عادل شباييك",
+        "ملوك الوافل والبان كيك. هنا السعادة بتدوب في الشوكولاتة!",
+      navigation: "لف في الموقع",
+      ourMenu: "المنيو بتاعنا",
+      contactUs: "كلمنا",
+      findOnMaps: "إحنا فين؟",
+      rights: "كل الحقوق محفوظة لوافيلا يا غالي.",
+      madeWith: "اتعمل بحب بواسطة",
+      byAdel: "عادل شباييك",
     },
 
     // ── Menu Page ──
     menu: {
-      badge: "المجموعة الكاملة",
-      title: "منيونا",
+      badge: "المنيو الكامل",
+      title: "اختار دلعك",
       description:
-        "كل منتج مصنوع بمكونات فاخرة — استكشف مجموعتنا الكاملة من الحلويات والمشروبات.",
-      searchPlaceholder: "ابحث في منيونا...",
-      allItems: "الكل",
-      showingItems: "عرض",
-      item: "منتج",
-      items: "منتجات",
-      in: "في",
-      noResults: "لا توجد نتائج",
-      noItems: "لا توجد منتجات متاحة",
-      noResultsDesc: 'لا توجد منتجات تطابق "%s". جرب بحثاً آخر.',
-      noItemsDesc: "تابعنا قريباً لمزيد من الإضافات!",
-      clearSearch: "مسح البحث",
+        "وافل مقرمش ولا بان كيك غرقان؟ قلب في المنيو واختار اللي يظبطلك مودك النهارده.",
+      searchPlaceholder: "بتدور على إيه؟...",
+      allItems: "كله موجود",
+      showingItems: "بنعرض",
+      item: "اختراع",
+      items: "اختراعات",
+      in: "من",
+      noResults: "ملقناش اللي بتدور عليه",
+      noItems: "مفيش اختراعات دلوقتي",
+      noResultsDesc: 'معلش مفيش حاجة اسمها "%s" عندنا. جرب تدور على وافل أو بان كيك!',
+      noItemsDesc: "بنجهزلك منيو جديد يكسر الدنيا، استنانا!",
+      clearSearch: "امسح البحث",
     },
 
     // ── Cart ──
     cart: {
-      title: "سلة التسوق",
-      items: "منتجات",
-      empty: "سلتك فارغة",
-      emptyDesc: "أضف بعض المنتجات اللذيذة من منيونا!",
-      browseMenu: "تصفح المنيو",
-      total: "الإجمالي",
-      proceedBtn: "المتابعة للطلب",
+      title: "عربيتك",
+      items: "حاجات",
+      empty: "العربية فاضية خالص",
+      emptyDesc: "مستني إيه؟ خش المنيو واختار أحلى وافل وبان كيك!",
+      browseMenu: "هات المنيو",
+      total: "الحساب يا معلم",
+      proceedBtn: "يالا نأكد الطلب",
       yourDetails: "بياناتك",
-      deliverTo: "سنوصل طلبك إلى عنوانك",
-      backToCart: "العودة للسلة",
-      fullName: "الاسم الكامل",
-      namePlaceholder: "أحمد محمد",
-      phone: "رقم الهاتف",
+      deliverTo: "هنوصلك السعادة لحد الباب",
+      backToCart: "ارجع للعربية",
+      fullName: "اسمك إيه؟",
+      namePlaceholder: "الاسم بالكامل",
+      phone: "رقم تليفونك",
       phonePlaceholder: "01xxxxxxxxx",
-      address: "عنوان التوصيل",
-      addressPlaceholder: "الشارع، المبنى، الشقة، المدينة...",
-      orderSummary: "ملخص الطلب",
-      orderViaWhatsapp: "اطلب عبر واتساب",
-      whatsappNote: "سيتم تحويلك إلى واتساب لتأكيد طلبك",
-      orderSent: "تم إرسال الطلب! 🎉",
+      address: "العنوان بالتفصيل",
+      addressPlaceholder: "الشارع، العمارة، الدور، الشقة...",
+      orderSummary: "راجعت الطلب؟",
+      orderViaWhatsapp: "اطلب من على الواتساب",
+      whatsappNote: "هنحولك على الواتساب عشان نأكد الطلب في ثواني",
+      orderSent: "طلبك طار! 🚀",
       orderSentDesc:
-        "تم فتح واتساب مع تفاصيل طلبك الكامل. أكمل المحادثة للتأكيد!",
-      nameError: "الرجاء إدخال اسمك الكامل",
-      phoneError: "الرجاء إدخال رقم هاتف صحيح",
-      addressError: "الرجاء إدخال عنوان التوصيل",
+        "الواتساب فتح معاك بتفاصيل الطلب، ابعت الرسالة وهنرد عليك على طول!",
+      nameError: "اكتب اسمك عشان نعرفك",
+      phoneError: "رقم التليفون مش مظبوط",
+      addressError: "اكتب العنوان بالتفصيل عشان منتهش",
     },
 
     // ── Product ──
     product: {
-      unavailable: "غير متاح",
-      featured: "مميز",
+      unavailable: "خلصان للأسف",
+      featured: "أكيلة!",
+      addedToCart: "نط في العربية! 🛒",
+    },
+
+    // ── Page Headers ──
+    aboutPage: {
+      badge: "✦ حكايتنا",
+      title: "عن وافليلا",
+      description: "حكاية شغف، جودة، وحب ميتوصفش للوافل والبان كيك.",
+    },
+    contactPage: {
+      badge: "✦ قولنا ألو",
+      title: "كلمنا",
+      description: "إحنا دايماً مبسوطين بيك. ابعتلنا أو تواصل معانا على أي حاجة من دول.",
     },
 
     // ── WhatsApp ──
     whatsapp: {
-      chatTooltip: "تواصل معنا!",
+      chatTooltip: "نقدر نساعدك؟",
     },
 
     // ── Footer Categories ──
-    footerCategories: ["وافل", "بن كيك"],
+    footerCategories: ["وافل", "بان كيك"],
   },
 };
 

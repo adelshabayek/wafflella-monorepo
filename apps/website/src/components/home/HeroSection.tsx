@@ -178,7 +178,7 @@ export function HeroSection() {
             <motion.div
               animate={{ x: [0, -8, 0] }}
               transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
-              className="absolute top-1/2 -left-2 sm:-left-6 -translate-y-1/2 bg-gradient-brand shadow-float rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-3 rtl:-right-2 rtl:sm:-right-6 rtl:-left-auto border border-white/20 z-10"
+              className="absolute top-1/2 -left-2 sm:-left-6 -translate-y-1/2 bg-gradient-brand shadow-float rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-3 rtl:-right-2 rtl:sm:-right-6 rtl:left-auto border border-white/20 z-10"
             >
               <div className="text-white text-[10px] sm:text-xs font-semibold leading-tight">{t.hero.floatingOffer}</div>
               <div className="text-white/80 text-[9px] sm:text-xs leading-tight">{t.hero.floatingOfferDesc}</div>

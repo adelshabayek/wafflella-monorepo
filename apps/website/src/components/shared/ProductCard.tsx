@@ -127,7 +127,7 @@ export const ProductCard = memo(function ProductCard({ product, index = 0, varia
                 if (product.available) {
                   add(product, qty);
                   setQty(1);
-                  toast.success(`${qty} ${name} added to cart!`);
+                  toast.success(`${qty} ${name} ${t.product.addedToCart}`);
                 }
               }}
               disabled={!product.available}
