@@ -91,13 +91,14 @@ export function subscribeToProducts(
 export function subscribeToFeaturedProducts(
   callback: (products: Product[]) => void
 ): Unsubscribe {
+  // Show the latest 6 available products as "featured"
   const q = query(
     collection(getDb(), "products"),
-    where("featured", "==", true),
-    where("available", "==", true)
+    where("available", "==", true),
+    orderBy("createdAt", "desc")
   );
   return onSnapshot(q, (snapshot) => {
-    const products: Product[] = snapshot.docs.map((d) => ({
+    const products: Product[] = snapshot.docs.slice(0, 6).map((d) => ({
       id: d.id,
       ...(d.data() as Omit<Product, "id">),
     }));
