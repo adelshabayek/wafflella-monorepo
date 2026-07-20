@@ -81,7 +81,7 @@ function EditProductModal({
       const parsedPieces = parseInt(pieces, 10);
       if (!isNaN(parsedPieces) && parsedPieces > 0) data.pieces = parsedPieces;
     } else {
-      data.pieces = null;
+      (data as any).pieces = null;
     }
     
     // Validate variants
@@ -89,7 +89,7 @@ function EditProductModal({
     if (validVariants.length > 0) {
       data.variants = validVariants;
     } else {
-      data.variants = null;
+      (data as any).variants = null;
     }
 
     mutation.mutate(data);
