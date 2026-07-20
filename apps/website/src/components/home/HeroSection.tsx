@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -132,20 +133,26 @@ export function HeroSection() {
             <div className="absolute inset-0 rounded-full bg-gradient-brand opacity-15 blur-3xl scale-110" />
             <div className="absolute inset-0 rounded-full glass shadow-float" />
 
-            {/* Waffle 3D visual */}
             <div className="absolute inset-0 rounded-full flex items-center justify-center p-4 sm:p-8">
-              <motion.img
-                src="/images/hero_waffle.png"
-                alt="Premium Waffle"
-                className="w-full h-full object-contain select-none mix-blend-multiply"
-                style={{ 
-                  filter: 'contrast(1.1) brightness(1.05) drop-shadow(0px 20px 30px rgba(0,0,0,0.1))',
-                  maskImage: 'radial-gradient(circle at center, black 50%, transparent 70%)',
-                  WebkitMaskImage: 'radial-gradient(circle at center, black 50%, transparent 70%)'
-                }}
+              <motion.div
                 animate={{ rotate: [0, 3, -3, 0], y: [0, -8, 0] }}
                 transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-              />
+                className="relative w-full h-full"
+              >
+                <Image
+                  src="/images/hero_waffle.png"
+                  alt="Premium Waffle"
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 340px, (max-width: 1024px) 420px, 480px"
+                  className="object-contain select-none mix-blend-multiply"
+                  style={{ 
+                    filter: 'contrast(1.1) brightness(1.05) drop-shadow(0px 20px 30px rgba(0,0,0,0.1))',
+                    maskImage: 'radial-gradient(circle at center, black 50%, transparent 70%)',
+                    WebkitMaskImage: 'radial-gradient(circle at center, black 50%, transparent 70%)'
+                  }}
+                />
+              </motion.div>
             </div>
 
             {/* Floating badge 1 */}

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Instagram, Facebook, Phone, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useSettings } from "@wafflella/hooks";
@@ -32,7 +33,13 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <img src="/images/logo.jpg" alt="Logo" className="w-10 h-10 rounded-xl object-cover shadow-soft" />
+              <Image 
+                src="/images/logo.jpg" 
+                alt="Logo" 
+                width={40}
+                height={40}
+                className="w-10 h-10 rounded-xl object-cover shadow-soft" 
+              />
               <span className="font-heading text-xl font-bold">{shopName.toUpperCase()}</span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed mb-6">

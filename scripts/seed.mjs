@@ -28,8 +28,8 @@ const db = getFirestore(app);
 // ─── Categories ───────────────────────────────────────────────────────────────
 
 const categories = [
-  { id: "waffle",   name: "🧇 Waffle",    nameAr: "واقل",     order: 1 },
-  { id: "bun-cake", name: "🎂 Bun Cake",  nameAr: "بان كيك",  order: 2 },
+  { id: "waffle", name: "🧇 Waffle", nameAr: "وافل", order: 1 },
+  { id: "bun-cake", name: "🎂 Bun Cake", nameAr: "بان كيك", order: 2 },
 ];
 
 // ─── Products ─────────────────────────────────────────────────────────────────
@@ -38,10 +38,10 @@ const products = [
   // ── Waffles ──
   {
     name: "Waffle Nutella",
-    nameAr: "واقل توتيلا",
+    nameAr: "وافل توتيلا",
     categoryId: "waffle",
     description: "Crispy golden waffle loaded with rich Nutella",
-    descriptionAr: "واقل ذهبي مقرمش مع نوتيلا",
+    descriptionAr: "وافل ذهبي مقرمش مع نوتيلا",
     price: 80,
     available: true,
     featured: true,
@@ -49,10 +49,10 @@ const products = [
   },
   {
     name: "Waffle Chocolate",
-    nameAr: "واقل شوكليت",
+    nameAr: "وافل شوكليت",
     categoryId: "waffle",
     description: "Warm waffle topped with smooth chocolate sauce",
-    descriptionAr: "واقل دافئ مع صوص شوكولاتة ناعم",
+    descriptionAr: "وافل دافئ مع صوص شوكولاتة ناعم",
     price: 80,
     available: true,
     featured: false,
@@ -60,10 +60,10 @@ const products = [
   },
   {
     name: "Waffle Lotus",
-    nameAr: "واقل لوتس",
+    nameAr: "وافل لوتس",
     categoryId: "waffle",
     description: "Waffle with irresistible caramelised Lotus Biscoff spread",
-    descriptionAr: "واقل مع كريمة لوتس بيسكوف",
+    descriptionAr: "وافل مع كريمة لوتس بيسكوف",
     price: 80,
     available: true,
     featured: true,
@@ -71,10 +71,10 @@ const products = [
   },
   {
     name: "Waffle Oreo",
-    nameAr: "واقل اوريو",
+    nameAr: "وافل اوريو",
     categoryId: "waffle",
     description: "Classic waffle with crushed Oreo cookies and cream",
-    descriptionAr: "واقل كلاسيك مع أوريو مجروش وكريمة",
+    descriptionAr: "وافل كلاسيك مع أوريو مجروش وكريمة",
     price: 80,
     available: true,
     featured: false,
@@ -82,7 +82,7 @@ const products = [
   },
   {
     name: "Waffle Mix",
-    nameAr: "واقل ميكس",
+    nameAr: "وافل ميكس",
     categoryId: "waffle",
     description: "The ultimate mix — Nutella, Lotus, and Oreo all in one",
     descriptionAr: "الخليط المثالي من نوتيلا ولوتس وأوريو",
@@ -93,10 +93,10 @@ const products = [
   },
   {
     name: "Waffle Platter",
-    nameAr: "واقلبارية",
+    nameAr: "وافلبارية",
     categoryId: "waffle",
     description: "Full platter: waffle + crepe + biscuit — the complete experience",
-    descriptionAr: "طبق كامل: واقل + كريب + بسكوت",
+    descriptionAr: "طبق كامل: وافل + كريب + بسكوت",
     price: 110,
     available: true,
     featured: false,

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export function ResponsiveToaster() {
   const { isRTL } = useLanguage();
-  const [position, setPosition] = useState<"bottom-right" | "bottom-left" | "bottom-center">("bottom-center");
+  const [position, setPosition] = useState<"bottom-right" | "bottom-left" | "top-center">("top-center");
 
   useEffect(() => {
     const handleResize = () => {
@@ -15,7 +15,7 @@ export function ResponsiveToaster() {
         setPosition(isRTL ? "bottom-right" : "bottom-left");
       } else {
         // sm and xs devices
-        setPosition("bottom-center");
+        setPosition("top-center");
       }
     };
 
@@ -31,7 +31,18 @@ export function ResponsiveToaster() {
       <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 767px) {
           [data-sonner-toaster] {
-            display: none !important;
+            top: 35% !important;
+            bottom: auto !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+            transform: translateY(-50%) !important;
+            margin: 0 !important;
+          }
+          [data-sonner-toast] {
+            margin: 0 auto !important;
           }
         }
       `}} />

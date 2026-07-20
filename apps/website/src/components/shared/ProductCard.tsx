@@ -8,7 +8,7 @@ import type { Product } from "@wafflella/types";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { memo, useState } from "react";
+import { memo, useState, useEffect, useMemo } from "react";
 
 interface ProductCardProps {
   product: Product;
@@ -27,7 +27,84 @@ export const ProductCard = memo(function ProductCard({ product, index = 0, varia
   const name = isRTL && product.nameAr ? product.nameAr : product.name;
   const description = isRTL && product.descriptionAr ? product.descriptionAr : product.description;
 
-  const imageUrl = product.image ? product.image.replace('.png', '.webp') : PLACEHOLDER_IMAGE;
+  // Helper to get local image based on product name
+  const getProductImage = (productName: string) => {
+    const nameLower = productName.toLowerCase();
+    
+    // Bun Cakes
+    if (nameLower.includes("bun cake") || nameLower.includes("بان كيك")) {
+      if (nameLower.includes("nutella") || nameLower.includes("نوتيلا")) return "/images/products/bun_cake_nutella.webp";
+      if (nameLower.includes("lotus") || nameLower.includes("لوتس")) return "/images/products/bun_cake_lotus.webp";
+      if (nameLower.includes("oreo") || nameLower.includes("اوريو") || nameLower.includes("أوريو")) return "/images/products/bun_cake_oreo.webp";
+      if (nameLower.includes("pistachio") || nameLower.includes("فستق")) return "/images/products/bun_cake_pistachio.webp";
+      if (nameLower.includes("mix") || nameLower.includes("ميكس")) return "/images/products/bun_cake_choco.webp";
+      return "/images/products/bun_cake_choco.webp";
+    }
+    
+    // Waffles
+    if (nameLower.includes("waffle") || nameLower.includes("وافل")) {
+      if (nameLower.includes("nutella") || nameLower.includes("نوتيلا")) return "/images/products/waffle_nutella.webp";
+      if (nameLower.includes("lotus") || nameLower.includes("لوتس")) return "/images/products/waffle_lotus.webp";
+      if (nameLower.includes("oreo") || nameLower.includes("اوريو") || nameLower.includes("أوريو")) return "/images/products/waffle_oreo.webp";
+      if (nameLower.includes("pistachio") || nameLower.includes("فستق")) return "/images/products/waffle_pistachio.webp";
+      if (nameLower.includes("mix") || nameLower.includes("ميكس")) return "/images/products/waffle_mix.webp";
+      if (nameLower.includes("platter") || nameLower.includes("بلاتر")) return "/images/products/waffle_platter.webp";
+      return "/images/products/waffle_choco.webp";
+    }
+
+    return PLACEHOLDER_IMAGE;
+  };
+
+  const imageUrl = product.image ? product.image.replace('.png', '.webp') : getProductImage(product.name);
+
+  // Auto-generate variants for pancakes if none exist
+  const effectiveVariants = useMemo(() => {
+    if (product.variants && product.variants.length > 0) return product.variants;
+    
+    const isPancake = product.name.toLowerCase().includes("pancake") || (product.nameAr && product.nameAr.includes("بان كيك"));
+    if (isPancake) {
+      // Find the base pieces count from the name (e.g. "Pancake Nutella 12")
+      const match = product.name.match(/\s(\d+)$/) || (product.nameAr && product.nameAr.match(/\s(\d+)$/));
+      const basePieces = match ? parseInt(match[1], 10) : (product.pieces || 12); // default to 12 if can't find
+      
+      const pricePerPiece = product.price / basePieces;
+      
+      return [
+        { id: `${product.id}-v6`, name: "6 BAN", nameAr: "6 قطع", price: 30 },
+        { id: `${product.id}-v12`, name: "12 BAN", nameAr: "12 قطعة", price: 60 },
+        { id: `${product.id}-v24`, name: "24 BAN", nameAr: "24 قطعة", price: 120 },
+      ];
+    }
+    return [];
+  }, [product]);
+
+  const [selectedVariant, setSelectedVariant] = useState<import("@wafflella/types").ProductVariant | null>(
+    effectiveVariants[0] || null
+  );
+
+  useEffect(() => {
+    if (effectiveVariants.length > 0) {
+      if (!selectedVariant || !effectiveVariants.find((v) => v.id === selectedVariant.id)) {
+        const match = product.name.match(/\s(\d+)$/) || (product.nameAr ? product.nameAr.match(/\s(\d+)$/) : null);
+        const basePieces = match ? parseInt(match[1] ?? "0", 10) : product.pieces;
+        const defaultVar = effectiveVariants.find(v => v.name.includes(`${basePieces}`)) ?? effectiveVariants[1] ?? effectiveVariants[0] ?? null;
+        setSelectedVariant(defaultVar);
+      }
+    } else {
+      setSelectedVariant(null);
+    }
+  }, [effectiveVariants]);
+
+  const displayPrice = selectedVariant ? selectedVariant.price : product.price;
+
+  // Extract pieces from name if not explicitly set and no variants exist
+  let displayPieces = product.pieces;
+  if (!displayPieces && effectiveVariants.length === 0) {
+    const match = name.match(/\s(\d+)$/);
+    if (match?.[1]) {
+      displayPieces = parseInt(match[1], 10);
+    }
+  }
 
   return (
     <motion.article
@@ -56,8 +133,6 @@ export const ProductCard = memo(function ProductCard({ product, index = 0, varia
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover group-hover:scale-105 transition-transform duration-500"
-            placeholder="blur"
-            blurDataURL={PLACEHOLDER_IMAGE}
           />
           {/* Overlay on hover */}
           <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -84,9 +159,40 @@ export const ProductCard = memo(function ProductCard({ product, index = 0, varia
 
       {/* Content */}
       <div className="p-5">
-        <h3 className="text-lg font-bold text-brand-text mb-1.5 line-clamp-1" dir={isRTL ? "rtl" : "ltr"}>
-          {name}
-        </h3>
+        <div className="flex items-start justify-between gap-2 mb-1.5" dir={isRTL ? "rtl" : "ltr"}>
+          <h3 className="text-lg font-bold text-brand-text line-clamp-1 mt-0.5">
+            {name.replace(/\s\d+$/, "")}
+          </h3>
+          {displayPieces && effectiveVariants.length === 0 && (
+            <div 
+              className="flex-shrink-0 flex items-center justify-center border-2 border-brand-primary text-brand-primary text-xs font-bold px-2 py-0.5 rounded-lg whitespace-nowrap bg-white shadow-sm"
+              dir="ltr"
+            >
+              {displayPieces} BAN
+            </div>
+          )}
+          
+          {/* Variants Selection */}
+          {effectiveVariants.length > 0 && (
+            <div className="flex items-center border border-brand-primary rounded-lg overflow-hidden flex-shrink-0 shadow-sm" dir="ltr">
+              {effectiveVariants.map((v, i) => (
+                <button
+                  key={v.id}
+                  onClick={() => setSelectedVariant(v)}
+                  className={cn(
+                    "px-2 py-1 text-[10px] sm:text-xs font-bold transition-all whitespace-nowrap",
+                    selectedVariant?.id === v.id
+                      ? "bg-brand-primary text-white"
+                      : "bg-white text-brand-primary hover:bg-brand-primary/10",
+                    i !== 0 && "border-l border-brand-primary"
+                  )}
+                >
+                  {v.name.replace(' BAN', '')}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
         <p className="text-brand-muted text-sm leading-relaxed line-clamp-2 mb-4" dir={isRTL ? "rtl" : "ltr"}>
           {description}
         </p>
@@ -95,7 +201,7 @@ export const ProductCard = memo(function ProductCard({ product, index = 0, varia
         <div className="flex items-center justify-between">
           <div dir="ltr" className="flex items-baseline">
             <span className="text-brand-primary font-bold text-xl font-heading">
-              {product.price}
+              {displayPrice}
             </span>
             <span className="text-brand-muted text-sm ml-1">EGP</span>
           </div>
@@ -125,9 +231,10 @@ export const ProductCard = memo(function ProductCard({ product, index = 0, varia
             <button
               onClick={() => {
                 if (product.available) {
-                  add(product, qty);
+                  add(product, qty, selectedVariant || undefined);
                   setQty(1);
-                  toast.success(`${qty} ${name} ${t.product.addedToCart}`);
+                  const variantInfo = selectedVariant ? ` (${selectedVariant.name})` : "";
+                  toast.success(`${qty} ${name}${variantInfo} ${t.product.addedToCart}`);
                 }
               }}
               disabled={!product.available}

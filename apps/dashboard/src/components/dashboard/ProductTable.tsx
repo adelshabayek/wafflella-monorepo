@@ -9,9 +9,9 @@ import {
 } from "@wafflella/firebase";
 import type { Product, Category } from "@wafflella/types";
 import { motion } from "framer-motion";
-import { Search, X, Pencil, Eye, EyeOff, Package } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { Plus, Trash2, Search, X, Pencil, Eye, EyeOff, Package } from "lucide-react";
 
 // ─── Edit Product Modal ────────────────────────────────────────────────────────
 
@@ -26,8 +26,18 @@ function EditProductModal({
   const [name, setName] = useState(product.name);
   const [nameAr, setNameAr] = useState(product.nameAr || "");
   const [price, setPrice] = useState(String(product.price));
+  const [pieces, setPieces] = useState(product.pieces ? String(product.pieces) : "");
   const [description, setDescription] = useState(product.description || "");
   const [descriptionAr, setDescriptionAr] = useState(product.descriptionAr || "");
+  
+  const isPancake = product.name.toLowerCase().includes("pancake") || (product.nameAr && product.nameAr.includes("بان كيك"));
+  const initialVariants = product.variants?.length ? product.variants : isPancake ? [
+    { id: crypto.randomUUID(), name: "6 BAN", price: 30 },
+    { id: crypto.randomUUID(), name: "12 BAN", price: 60 },
+    { id: crypto.randomUUID(), name: "24 BAN", price: 120 },
+  ] : [];
+  
+  const [variants, setVariants] = useState<import("@wafflella/types").ProductVariant[]>(initialVariants);
 
   const mutation = useMutation({
     mutationFn: (data: Partial<Product>) => updateProduct(product.id, data),
@@ -67,7 +77,34 @@ function EditProductModal({
     };
     if (nameAr.trim()) data.nameAr = nameAr.trim();
     if (descriptionAr.trim()) data.descriptionAr = descriptionAr.trim();
+    if (pieces.trim()) {
+      const parsedPieces = parseInt(pieces, 10);
+      if (!isNaN(parsedPieces) && parsedPieces > 0) data.pieces = parsedPieces;
+    } else {
+      data.pieces = null;
+    }
+    
+    // Validate variants
+    const validVariants = variants.filter(v => v.name.trim() && v.price >= 0);
+    if (validVariants.length > 0) {
+      data.variants = validVariants;
+    } else {
+      data.variants = null;
+    }
+
     mutation.mutate(data);
+  };
+
+  const addVariant = () => {
+    setVariants([...variants, { id: crypto.randomUUID(), name: "", price: 0 }]);
+  };
+
+  const updateVariant = (id: string, field: keyof import("@wafflella/types").ProductVariant, value: string | number) => {
+    setVariants(variants.map(v => v.id === id ? { ...v, [field]: value } : v));
+  };
+
+  const removeVariant = (id: string) => {
+    setVariants(variants.filter(v => v.id !== id));
   };
 
   return (
@@ -143,19 +180,81 @@ function EditProductModal({
             </div>
           </div>
 
-          {/* Price */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Price (EGP)</label>
-            <input
-              type="number"
-              min="0"
-              step="0.5"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
-              placeholder="e.g. 35"
-            />
-          </div>
+
+          {/* Price & Pieces — hidden for pancakes since price is per variant */}
+          {!isPancake && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Base Price (EGP)</label>
+                <input
+                  type="number"
+                  min="0"
+                  step="0.5"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+                  placeholder="e.g. 35"
+                />
+              </div>
+            </div>
+          )}
+
+
+          {/* Variants */}
+          {isPancake && (
+            <div className="pt-2 border-t border-gray-100">
+              <div className="flex items-center justify-between mb-3">
+                <div>
+                  <h4 className="text-sm font-bold text-gray-900">Variants / Sizes</h4>
+                  <p className="text-xs text-gray-500">Add different sizes (e.g., 6 BAN, 12 BAN)</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={addVariant}
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-brand-primary bg-brand-primary-light rounded-lg hover:bg-brand-primary hover:text-white transition-colors"
+                >
+                  <Plus size={14} /> Add Variant
+                </button>
+              </div>
+              <div className="space-y-3">
+                {variants.map((variant) => (
+                  <div key={variant.id} className="flex items-start gap-2 bg-gray-50 p-2 rounded-xl border border-gray-100">
+                    <div className="flex-1 space-y-2">
+                      <input
+                        type="text"
+                        value={variant.name}
+                        onChange={(e) => updateVariant(variant.id, "name", e.target.value)}
+                        placeholder="Name (e.g. 6 BAN)"
+                        className="w-full px-3 py-1.5 border border-gray-200 rounded-lg text-sm outline-none focus:ring-2 focus:ring-brand-primary/20"
+                        dir="ltr"
+                      />
+                    </div>
+                    <div className="w-24">
+                      <input
+                        type="number"
+                        min="0"
+                        step="0.5"
+                        value={variant.price}
+                        onChange={(e) => updateVariant(variant.id, "price", parseFloat(e.target.value) || 0)}
+                        placeholder="Price"
+                        className="w-full px-3 py-1.5 border border-gray-200 rounded-lg text-sm outline-none focus:ring-2 focus:ring-brand-primary/20"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => removeVariant(variant.id)}
+                      className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                ))}
+                {variants.length === 0 && (
+                  <p className="text-xs text-center text-gray-400 py-2">No variants added.</p>
+                )}
+              </div>
+            </div>
+          )}
 
           <div className="pt-2 flex justify-end gap-2">
             <button
@@ -199,7 +298,19 @@ const ProductRow = memo(({
     >
       {/* Name EN */}
       <td className="pl-5 pr-2 py-3.5">
-        <span className="font-semibold text-gray-900 text-sm whitespace-nowrap">{product.name}</span>
+        <div className="flex items-center gap-2">
+          <span className="font-semibold text-gray-900 text-sm whitespace-nowrap">{product.name}</span>
+          {product.variants && product.variants.length > 0 && (
+            <span className="px-1.5 py-0.5 rounded-md bg-brand-primary/10 text-brand-primary border border-brand-primary/20 text-[10px] font-bold whitespace-nowrap">
+              {product.variants.length} sizes
+            </span>
+          )}
+          {product.pieces && !product.variants?.length && (
+            <span className="px-1.5 py-0.5 rounded-md bg-gray-100 text-gray-600 text-[10px] font-bold whitespace-nowrap">
+              {product.pieces} BAN
+            </span>
+          )}
+        </div>
       </td>
 
       {/* Name AR */}
@@ -264,6 +375,7 @@ ProductRow.displayName = "ProductRow";
 
 // ─── Products Price Table ──────────────────────────────────────────────────────
 
+
 export function ProductTable() {
   const queryClient = useQueryClient();
   const [search, setSearch] = useState("");
@@ -293,7 +405,7 @@ export function ProductTable() {
     staleTime: Infinity,
   });
 
-  // Toggle availability mutation
+
   const toggleMutation = useMutation({
     mutationFn: ({ id, available }: { id: string; available: boolean }) =>
       updateProduct(id, { available }),
@@ -340,8 +452,8 @@ export function ProductTable() {
           </p>
         </div>
         <div className="flex items-center gap-2 bg-brand-primary-light text-brand-primary px-4 py-2 rounded-xl text-sm font-semibold">
-          <span>{products.length} products</span>
-        </div>
+            <span>{products.length} products</span>
+          </div>
       </div>
 
       {/* Filters */}

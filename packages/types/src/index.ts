@@ -23,6 +23,13 @@ export interface Category {
   icon?: string;
 }
 
+export interface ProductVariant {
+  id: string;
+  name: string;
+  nameAr?: string;
+  price: number;
+}
+
 // ─── Product ──────────────────────────────────────────────────────────────────
 
 export interface Product {
@@ -32,10 +39,12 @@ export interface Product {
   categoryId: string;
   description: string;
   descriptionAr?: string;
-  price: number;
+  price: number; // Base price, might be unused if variants exist
+  variants?: ProductVariant[];
   image: string;
   available: boolean;
   featured: boolean;
+  pieces?: number; // Kept for backward compatibility, though variants are preferred
   createdAt: Timestamp | null;
   updatedAt: Timestamp | null;
 }

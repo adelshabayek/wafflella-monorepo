@@ -26,31 +26,31 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const categories = [
-  { id: "waffle",   name: "🧇 Waffle",    nameAr: "واقل",     order: 1 },
-  { id: "bun-cake", name: "🎂 Bun Cake",  nameAr: "بان كيك",  order: 2 },
+  { id: "waffle", name: "🧇 Waffle", nameAr: "وافل", order: 1 },
+  { id: "bun-cake", name: "🎂 Bun Cake", nameAr: "بان كيك", order: 2 },
 ];
 
 const products = [
   // ── Waffles ──
-  { name: "Waffle Nutella",        nameAr: "واقل توتيلا",        categoryId: "waffle",   description: "Crispy golden waffle loaded with rich Nutella",                    price: 80,  available: true, featured: true,  image: "" },
-  { name: "Waffle Chocolate",      nameAr: "واقل شوكليت",        categoryId: "waffle",   description: "Warm waffle topped with smooth chocolate sauce",                   price: 80,  available: true, featured: false, image: "" },
-  { name: "Waffle Lotus",          nameAr: "واقل لوتس",          categoryId: "waffle",   description: "Waffle with irresistible caramelised Lotus Biscoff spread",        price: 80,  available: true, featured: true,  image: "" },
-  { name: "Waffle Oreo",           nameAr: "واقل اوريو",         categoryId: "waffle",   description: "Classic waffle with crushed Oreo cookies and cream",               price: 80,  available: true, featured: false, image: "" },
-  { name: "Waffle Mix",            nameAr: "واقل ميكس",          categoryId: "waffle",   description: "The ultimate mix — Nutella, Lotus, and Oreo all in one",           price: 110, available: true, featured: true,  image: "" },
-  { name: "Waffle Platter",        nameAr: "واقلبارية",          categoryId: "waffle",   description: "Full platter: waffle + crepe + biscuit",                           price: 110, available: true, featured: false, image: "" },
+  { name: "Waffle Nutella", nameAr: "وافل توتيلا", categoryId: "waffle", description: "Crispy golden waffle loaded with rich Nutella", price: 80, available: true, featured: true, image: "" },
+  { name: "Waffle Chocolate", nameAr: "وافل شوكليت", categoryId: "waffle", description: "Warm waffle topped with smooth chocolate sauce", price: 80, available: true, featured: false, image: "" },
+  { name: "Waffle Lotus", nameAr: "وافل لوتس", categoryId: "waffle", description: "Waffle with irresistible caramelised Lotus Biscoff spread", price: 80, available: true, featured: true, image: "" },
+  { name: "Waffle Oreo", nameAr: "وافل اوريو", categoryId: "waffle", description: "Classic waffle with crushed Oreo cookies and cream", price: 80, available: true, featured: false, image: "" },
+  { name: "Waffle Mix", nameAr: "وافل ميكس", categoryId: "waffle", description: "The ultimate mix — Nutella, Lotus, and Oreo all in one", price: 110, available: true, featured: true, image: "" },
+  { name: "Waffle Platter", nameAr: "وافلبارية", categoryId: "waffle", description: "Full platter: waffle + crepe + biscuit", price: 110, available: true, featured: false, image: "" },
   // ── Bun Cakes 24 pcs ──
-  { name: "Bun Cake Nutella (24)", nameAr: "بان كيك توتيلا 24",  categoryId: "bun-cake", description: "24 bite-sized bun cakes filled with Nutella",                      price: 70,  available: true, featured: false, image: "" },
-  { name: "Bun Cake Nutella (12)", nameAr: "بان كيك توتيلا 12",  categoryId: "bun-cake", description: "12 bite-sized bun cakes filled with Nutella",                      price: 35,  available: true, featured: false, image: "" },
-  { name: "Bun Cake Choco (24)",   nameAr: "بان كيك شوكليت 24",  categoryId: "bun-cake", description: "24 bite-sized bun cakes filled with chocolate",                    price: 70,  available: true, featured: false, image: "" },
-  { name: "Bun Cake Choco (12)",   nameAr: "بان كيك شوكليت 12",  categoryId: "bun-cake", description: "12 bite-sized bun cakes filled with chocolate",                    price: 35,  available: true, featured: false, image: "" },
-  { name: "Bun Cake Lotus (24)",   nameAr: "بان كيك لوتس 24",    categoryId: "bun-cake", description: "24 bite-sized bun cakes filled with Lotus Biscoff",                price: 80,  available: true, featured: false, image: "" },
-  { name: "Bun Cake Lotus (12)",   nameAr: "بان كيك لوتس 12",    categoryId: "bun-cake", description: "12 bite-sized bun cakes filled with Lotus Biscoff",                price: 40,  available: true, featured: false, image: "" },
-  { name: "Bun Cake Oreo (24)",    nameAr: "بان كيك اوريو 24",   categoryId: "bun-cake", description: "24 bite-sized bun cakes filled with Oreo cream",                   price: 80,  available: true, featured: false, image: "" },
-  { name: "Bun Cake Oreo (12)",    nameAr: "بان كيك اوريو 12",   categoryId: "bun-cake", description: "12 bite-sized bun cakes filled with Oreo cream",                   price: 40,  available: true, featured: false, image: "" },
-  { name: "Bun Cake Pistachio (24)",nameAr:"بان كيك فستق 24",    categoryId: "bun-cake", description: "24 bite-sized bun cakes filled with pistachio cream",               price: 90,  available: true, featured: true,  image: "" },
-  { name: "Bun Cake Pistachio (12)",nameAr:"بان كيك فستق 12",    categoryId: "bun-cake", description: "12 bite-sized bun cakes filled with pistachio cream",               price: 45,  available: true, featured: false, image: "" },
-  { name: "Bun Cake Mix (24)",     nameAr: "بان كيك ميكس 24",    categoryId: "bun-cake", description: "24 bun cakes with a variety of fillings",                          price: 100, available: true, featured: true,  image: "" },
-  { name: "Bun Cake Mix (12)",     nameAr: "بان كيك ميكس 12",    categoryId: "bun-cake", description: "12 bun cakes with a variety of fillings",                          price: 55,  available: true, featured: false, image: "" },
+  { name: "Bun Cake Nutella (24)", nameAr: "بان كيك توتيلا 24", categoryId: "bun-cake", description: "24 bite-sized bun cakes filled with Nutella", price: 70, available: true, featured: false, image: "" },
+  { name: "Bun Cake Nutella (12)", nameAr: "بان كيك توتيلا 12", categoryId: "bun-cake", description: "12 bite-sized bun cakes filled with Nutella", price: 35, available: true, featured: false, image: "" },
+  { name: "Bun Cake Choco (24)", nameAr: "بان كيك شوكليت 24", categoryId: "bun-cake", description: "24 bite-sized bun cakes filled with chocolate", price: 70, available: true, featured: false, image: "" },
+  { name: "Bun Cake Choco (12)", nameAr: "بان كيك شوكليت 12", categoryId: "bun-cake", description: "12 bite-sized bun cakes filled with chocolate", price: 35, available: true, featured: false, image: "" },
+  { name: "Bun Cake Lotus (24)", nameAr: "بان كيك لوتس 24", categoryId: "bun-cake", description: "24 bite-sized bun cakes filled with Lotus Biscoff", price: 80, available: true, featured: false, image: "" },
+  { name: "Bun Cake Lotus (12)", nameAr: "بان كيك لوتس 12", categoryId: "bun-cake", description: "12 bite-sized bun cakes filled with Lotus Biscoff", price: 40, available: true, featured: false, image: "" },
+  { name: "Bun Cake Oreo (24)", nameAr: "بان كيك اوريو 24", categoryId: "bun-cake", description: "24 bite-sized bun cakes filled with Oreo cream", price: 80, available: true, featured: false, image: "" },
+  { name: "Bun Cake Oreo (12)", nameAr: "بان كيك اوريو 12", categoryId: "bun-cake", description: "12 bite-sized bun cakes filled with Oreo cream", price: 40, available: true, featured: false, image: "" },
+  { name: "Bun Cake Pistachio (24)", nameAr: "بان كيك فستق 24", categoryId: "bun-cake", description: "24 bite-sized bun cakes filled with pistachio cream", price: 90, available: true, featured: true, image: "" },
+  { name: "Bun Cake Pistachio (12)", nameAr: "بان كيك فستق 12", categoryId: "bun-cake", description: "12 bite-sized bun cakes filled with pistachio cream", price: 45, available: true, featured: false, image: "" },
+  { name: "Bun Cake Mix (24)", nameAr: "بان كيك ميكس 24", categoryId: "bun-cake", description: "24 bun cakes with a variety of fillings", price: 100, available: true, featured: true, image: "" },
+  { name: "Bun Cake Mix (12)", nameAr: "بان كيك ميكس 12", categoryId: "bun-cake", description: "12 bun cakes with a variety of fillings", price: 55, available: true, featured: false, image: "" },
 ];
 
 async function seed() {

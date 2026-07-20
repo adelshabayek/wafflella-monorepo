@@ -16,6 +16,9 @@ import type { Product } from "@wafflella/types";
 export interface CartItem {
   product: Product;
   quantity: number;
+  variantId?: string;
+  variantName?: string;
+  priceAtAddition: number; // To lock the price of the specific variant
 }
 
 interface CartState {
@@ -24,10 +27,10 @@ interface CartState {
 }
 
 type CartAction =
-  | { type: "ADD"; product: Product; quantity?: number | undefined }
-  | { type: "REMOVE"; productId: string }
-  | { type: "INCREMENT"; productId: string }
-  | { type: "DECREMENT"; productId: string }
+  | { type: "ADD"; product: Product; quantity?: number; variant?: import("@wafflella/types").ProductVariant }
+  | { type: "REMOVE"; productId: string; variantId?: string }
+  | { type: "INCREMENT"; productId: string; variantId?: string }
+  | { type: "DECREMENT"; productId: string; variantId?: string }
   | { type: "CLEAR" }
   | { type: "OPEN" }
   | { type: "CLOSE" }
@@ -38,10 +41,10 @@ interface CartContextValue {
   isOpen: boolean;
   totalItems: number;
   totalPrice: number;
-  add: (product: Product, quantity?: number) => void;
-  remove: (productId: string) => void;
-  increment: (productId: string) => void;
-  decrement: (productId: string) => void;
+  add: (product: Product, quantity?: number, variant?: import("@wafflella/types").ProductVariant) => void;
+  remove: (productId: string, variantId?: string) => void;
+  increment: (productId: string, variantId?: string) => void;
+  decrement: (productId: string, variantId?: string) => void;
   clear: () => void;
   open: () => void;
   close: () => void;
@@ -56,13 +59,16 @@ function cartReducer(state: CartState, action: CartAction): CartState {
 
     case "ADD": {
       const addQty = action.quantity ?? 1;
-      const existing = state.items.find((i) => i.product.id === action.product.id);
+      const variant = action.variant;
+      const existing = state.items.find(
+        (i) => i.product.id === action.product.id && i.variantId === variant?.id
+      );
+      
       if (existing) {
         return {
           ...state,
-          isOpen: true,
           items: state.items.map((i) =>
-            i.product.id === action.product.id
+            i.product.id === action.product.id && i.variantId === variant?.id
               ? { ...i, quantity: i.quantity + addQty }
               : i
           ),
@@ -70,22 +76,27 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       }
       return {
         ...state,
-        isOpen: true,
-        items: [...state.items, { product: action.product, quantity: addQty }],
+        items: [...state.items, { 
+          product: action.product, 
+          quantity: addQty,
+          variantId: variant?.id,
+          variantName: variant?.name,
+          priceAtAddition: variant?.price ?? action.product.price
+        }],
       };
     }
 
     case "REMOVE":
       return {
         ...state,
-        items: state.items.filter((i) => i.product.id !== action.productId),
+        items: state.items.filter((i) => !(i.product.id === action.productId && i.variantId === action.variantId)),
       };
 
     case "INCREMENT":
       return {
         ...state,
         items: state.items.map((i) =>
-          i.product.id === action.productId
+          i.product.id === action.productId && i.variantId === action.variantId
             ? { ...i, quantity: i.quantity + 1 }
             : i
         ),
@@ -96,7 +107,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         ...state,
         items: state.items
           .map((i) =>
-            i.product.id === action.productId
+            i.product.id === action.productId && i.variantId === action.variantId
               ? { ...i, quantity: i.quantity - 1 }
               : i
           )
@@ -148,10 +159,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [state.items]);
 
-  const add = useCallback((product: Product, quantity?: number) => dispatch({ type: "ADD", product, quantity }), []);
-  const remove = useCallback((productId: string) => dispatch({ type: "REMOVE", productId }), []);
-  const increment = useCallback((productId: string) => dispatch({ type: "INCREMENT", productId }), []);
-  const decrement = useCallback((productId: string) => dispatch({ type: "DECREMENT", productId }), []);
+  const add = useCallback((product: Product, quantity?: number, variant?: import("@wafflella/types").ProductVariant) => dispatch({ type: "ADD", product, quantity, variant }), []);
+  const remove = useCallback((productId: string, variantId?: string) => dispatch({ type: "REMOVE", productId, variantId }), []);
+  const increment = useCallback((productId: string, variantId?: string) => dispatch({ type: "INCREMENT", productId, variantId }), []);
+  const decrement = useCallback((productId: string, variantId?: string) => dispatch({ type: "DECREMENT", productId, variantId }), []);
   const clear = useCallback(() => dispatch({ type: "CLEAR" }), []);
   const open = useCallback(() => dispatch({ type: "OPEN" }), []);
   const close = useCallback(() => dispatch({ type: "CLOSE" }), []);
@@ -161,7 +172,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     [state.items]
   );
   const totalPrice = useMemo(
-    () => state.items.reduce((sum, i) => sum + i.product.price * i.quantity, 0),
+    () => state.items.reduce((sum, i) => sum + (i.priceAtAddition || i.product.price) * i.quantity, 0),
     [state.items]
   );
 

@@ -259,7 +259,7 @@ function CartItems({ onProceed }: { onProceed: () => void }) {
             const name = isRTL && item.product.nameAr ? item.product.nameAr : item.product.name;
             return (
               <motion.div
-                key={item.product.id}
+                key={`${item.product.id}-${item.variantId || 'default'}`}
                 layout
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -278,16 +278,23 @@ function CartItems({ onProceed }: { onProceed: () => void }) {
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-brand-text text-sm line-clamp-1">{name}</p>
+                  <p className="font-semibold text-brand-text text-sm line-clamp-1">
+                    {name}
+                    {item.variantName && (
+                      <span className="text-brand-muted text-xs font-normal ms-1">
+                        ({item.variantName})
+                      </span>
+                    )}
+                  </p>
                   <p className="text-brand-primary font-bold text-sm mt-0.5 flex gap-1" dir="ltr">
-                    <span>{item.product.price * item.quantity}</span>
+                    <span>{(item.priceAtAddition || item.product.price) * item.quantity}</span>
                     <span className="text-xs font-medium text-brand-muted self-end mb-px">EGP</span>
                   </p>
                 </div>
 
                 <div className="flex items-center gap-1.5" dir="ltr">
                   <button
-                    onClick={() => decrement(item.product.id)}
+                    onClick={() => decrement(item.product.id, item.variantId)}
                     className="w-7 h-7 rounded-lg bg-white border border-brand-border flex items-center justify-center hover:border-brand-primary hover:text-brand-primary transition-colors"
                     aria-label={`Decrease quantity of ${name}`}
                   >
@@ -297,14 +304,14 @@ function CartItems({ onProceed }: { onProceed: () => void }) {
                     {item.quantity}
                   </span>
                   <button
-                    onClick={() => increment(item.product.id)}
+                    onClick={() => increment(item.product.id, item.variantId)}
                     className="w-7 h-7 rounded-lg bg-gradient-brand text-white flex items-center justify-center hover:opacity-90 transition-all"
                     aria-label={`Increase quantity of ${name}`}
                   >
                     <Plus size={12} />
                   </button>
                   <button
-                    onClick={() => remove(item.product.id)}
+                    onClick={() => remove(item.product.id, item.variantId)}
                     className="w-7 h-7 rounded-lg bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:border-red-300 hover:text-red-500 transition-colors ltr:ml-1 rtl:mr-1"
                     aria-label={`Remove ${name} from cart`}
                   >

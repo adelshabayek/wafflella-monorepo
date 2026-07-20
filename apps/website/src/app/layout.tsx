@@ -94,7 +94,6 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/images/logo.jpg' },
-      new URL('/images/logo.jpg', 'https://wafflella.com'),
     ],
     apple: [
       { url: '/images/logo.jpg' },
