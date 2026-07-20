@@ -16,8 +16,8 @@ import type { Product } from "@wafflella/types";
 export interface CartItem {
   product: Product;
   quantity: number;
-  variantId?: string | undefined;
-  variantName?: string | undefined;
+  variantId?: string;
+  variantName?: string;
   priceAtAddition: number; // To lock the price of the specific variant
 }
 
@@ -27,10 +27,10 @@ interface CartState {
 }
 
 type CartAction =
-  | { type: "ADD"; product: Product; quantity?: number | undefined; variant?: import("@wafflella/types").ProductVariant | undefined }
-  | { type: "REMOVE"; productId: string; variantId?: string | undefined }
-  | { type: "INCREMENT"; productId: string; variantId?: string | undefined }
-  | { type: "DECREMENT"; productId: string; variantId?: string | undefined }
+  | { type: "ADD"; product: Product; quantity?: number; variant?: import("@wafflella/types").ProductVariant }
+  | { type: "REMOVE"; productId: string; variantId?: string }
+  | { type: "INCREMENT"; productId: string; variantId?: string }
+  | { type: "DECREMENT"; productId: string; variantId?: string }
   | { type: "CLEAR" }
   | { type: "OPEN" }
   | { type: "CLOSE" }
@@ -41,10 +41,10 @@ interface CartContextValue {
   isOpen: boolean;
   totalItems: number;
   totalPrice: number;
-  add: (product: Product, quantity?: number | undefined, variant?: import("@wafflella/types").ProductVariant | undefined) => void;
-  remove: (productId: string, variantId?: string | undefined) => void;
-  increment: (productId: string, variantId?: string | undefined) => void;
-  decrement: (productId: string, variantId?: string | undefined) => void;
+  add: (product: Product, quantity?: number, variant?: import("@wafflella/types").ProductVariant) => void;
+  remove: (productId: string, variantId?: string) => void;
+  increment: (productId: string, variantId?: string) => void;
+  decrement: (productId: string, variantId?: string) => void;
   clear: () => void;
   open: () => void;
   close: () => void;
@@ -159,10 +159,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [state.items]);
 
-  const add = useCallback((product: Product, quantity?: number | undefined, variant?: import("@wafflella/types").ProductVariant | undefined) => dispatch({ type: "ADD", product, quantity, variant }), []);
-  const remove = useCallback((productId: string, variantId?: string | undefined) => dispatch({ type: "REMOVE", productId, variantId }), []);
-  const increment = useCallback((productId: string, variantId?: string | undefined) => dispatch({ type: "INCREMENT", productId, variantId }), []);
-  const decrement = useCallback((productId: string, variantId?: string | undefined) => dispatch({ type: "DECREMENT", productId, variantId }), []);
+  const add = useCallback((product: Product, quantity?: number, variant?: import("@wafflella/types").ProductVariant) => dispatch({ type: "ADD", product, quantity, variant }), []);
+  const remove = useCallback((productId: string, variantId?: string) => dispatch({ type: "REMOVE", productId, variantId }), []);
+  const increment = useCallback((productId: string, variantId?: string) => dispatch({ type: "INCREMENT", productId, variantId }), []);
+  const decrement = useCallback((productId: string, variantId?: string) => dispatch({ type: "DECREMENT", productId, variantId }), []);
   const clear = useCallback(() => dispatch({ type: "CLEAR" }), []);
   const open = useCallback(() => dispatch({ type: "OPEN" }), []);
   const close = useCallback(() => dispatch({ type: "CLOSE" }), []);
