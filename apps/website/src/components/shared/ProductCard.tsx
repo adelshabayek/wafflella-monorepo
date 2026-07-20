@@ -65,7 +65,7 @@ export const ProductCard = memo(function ProductCard({ product, index = 0, varia
     if (isPancake) {
       // Find the base pieces count from the name (e.g. "Pancake Nutella 12")
       const match = product.name.match(/\s(\d+)$/) || (product.nameAr && product.nameAr.match(/\s(\d+)$/));
-      const basePieces = match ? parseInt(match[1], 10) : (product.pieces || 12); // default to 12 if can't find
+      const basePieces = match && match[1] ? parseInt(match[1] as string, 10) : (product.pieces || 12); // default to 12 if can't find
       
       const pricePerPiece = product.price / basePieces;
       
