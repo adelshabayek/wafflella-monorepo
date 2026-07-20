@@ -102,7 +102,7 @@ export const ProductCard = memo(function ProductCard({ product, index = 0, varia
   if (!displayPieces && effectiveVariants.length === 0) {
     const match = name.match(/\s(\d+)$/);
     if (match?.[1]) {
-      displayPieces = parseInt(match[1], 10);
+      displayPieces = parseInt(match[1] as string, 10);
     }
   }
 
