@@ -26,7 +26,7 @@ function EditProductModal({
   const [name, setName] = useState(product.name);
   const [nameAr, setNameAr] = useState(product.nameAr || "");
   const [price, setPrice] = useState(String(product.price));
-  const [pieces, setPieces] = useState(product.pieces ? String(product.pieces) : "");
+  const [pieces] = useState(product.pieces ? String(product.pieces) : "");
   const [description, setDescription] = useState(product.description || "");
   const [descriptionAr, setDescriptionAr] = useState(product.descriptionAr || "");
   
