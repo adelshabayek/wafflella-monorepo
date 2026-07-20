@@ -17,7 +17,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const PLACEHOLDER =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%23FCE4EC'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' font-size='32' fill='%23E91E63'%3E🧇%3C/text%3E%3C/svg%3E";
 
-const WHATSAPP_NUMBER = "201020417971";
+const WHATSAPP_NUMBER = "201003439023";
 
 
 function OrderForm({ onBack }: { onBack: () => void }) {

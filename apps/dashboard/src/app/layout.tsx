@@ -12,10 +12,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
   icons: {
     icon: [
-      { url: "/images/logo.jpg" },
+      { url: "/images/logo.png" },
     ],
     apple: [
-      { url: "/images/logo.jpg" },
+      { url: "/images/logo.png" },
     ],
   },
 };

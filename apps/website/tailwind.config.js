@@ -10,16 +10,16 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          primary: "#D81B60",
-          secondary: "#F48FB1",
-          accent: "#4E342E",
-          background: "#FFFDFB",
-          text: "#3E2723",
-          muted: "#8D6E63",
-          border: "#F5E6E8",
+          primary: "#BA7571",
+          secondary: "#EDA7B1",
+          accent: "#5C3123",
+          background: "#FFF9F9",
+          text: "#4A2E2B",
+          muted: "#9E7A76",
+          border: "#F7E1E3",
           card: "#FFFFFF",
-          "primary-hover": "#AD1457",
-          "primary-light": "#FCE4EC",
+          "primary-hover": "#9F5B57",
+          "primary-light": "#FBE4E7",
         },
       },
       fontFamily: {
@@ -27,10 +27,10 @@ module.exports = {
         body: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 4px 20px rgba(216, 27, 96, 0.08)",
-        card: "0 4px 24px rgba(62, 39, 35, 0.04)",
-        "card-hover": "0 12px 48px rgba(216, 27, 96, 0.12)",
-        float: "0 8px 30px rgba(62, 39, 35, 0.08)",
+        soft: "0 4px 20px rgba(186, 117, 113, 0.08)",
+        card: "0 4px 24px rgba(74, 46, 43, 0.04)",
+        "card-hover": "0 12px 48px rgba(186, 117, 113, 0.15)",
+        float: "0 8px 30px rgba(74, 46, 43, 0.08)",
       },
       borderRadius: {
         xl: "1rem",
@@ -40,11 +40,11 @@ module.exports = {
       },
       backgroundImage: {
         "gradient-brand":
-          "linear-gradient(135deg, #D81B60 0%, #F06292 50%, #F48FB1 100%)",
+          "linear-gradient(135deg, #BA7571 0%, #D48C88 50%, #EDA7B1 100%)",
         "gradient-warm":
-          "linear-gradient(180deg, #FFFDFB 0%, #FFF0F5 100%)",
+          "linear-gradient(180deg, #FFF9F9 0%, #FBE4E7 100%)",
         "gradient-hero":
-          "linear-gradient(135deg, #FFFDFB 0%, #FFF0F5 40%, #FCE4EC 100%)",
+          "linear-gradient(135deg, #FFF9F9 0%, #FCF0F1 40%, #FBE4E7 100%)",
       },
       animation: {
         float: "float 3s ease-in-out infinite",

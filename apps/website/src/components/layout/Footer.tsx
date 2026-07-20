@@ -34,7 +34,7 @@ export function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <Image 
-                src="/images/logo.jpg" 
+                src="/images/logo.png" 
                 alt="Logo" 
                 width={40}
                 height={40}

@@ -18,7 +18,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
-  const logoSrc = "/images/logo.jpg";
+  const logoSrc = "/images/logo.png";
   const shopName = settings?.shopName || "Wafflella";
 
   useEffect(() => {

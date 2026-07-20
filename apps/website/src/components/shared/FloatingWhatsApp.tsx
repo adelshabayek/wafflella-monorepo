@@ -19,7 +19,7 @@ export function FloatingWhatsApp() {
     return () => clearTimeout(timer);
   }, []);
 
-  const phone = settings?.whatsapp ?? "01003439023";
+  const phone = settings?.whatsapp ?? "+201003439023";
   const waUrl = `https://wa.me/${phone.replace(/[^0-9]/g, "")}?text=Hello%20WAFFLELLA!%20I'd%20like%20to%20place%20an%20order.`;
 
   return (
