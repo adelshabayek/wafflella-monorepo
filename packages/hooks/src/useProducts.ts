@@ -26,18 +26,35 @@ export function useProducts(categoryId?: string) {
 
 export function useFeaturedProducts() {
   const queryClient = useQueryClient();
+  const queryKey = ["products", "featured"];
 
   useEffect(() => {
+    // Subscribe and immediately populate cache on first snapshot
     const unsubscribe = subscribeToFeaturedProducts((products) => {
-      queryClient.setQueryData<Product[]>(["products", "featured"], products);
+      queryClient.setQueryData<Product[]>(queryKey, products);
     });
     return unsubscribe;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queryClient]);
 
   return useQuery<Product[]>({
-    queryKey: ["products", "featured"],
+    queryKey,
+    // queryFn fetches from Firebase directly so first render isn't empty
     queryFn: () =>
-      queryClient.getQueryData<Product[]>(["products", "featured"]) ?? [],
+      new Promise<Product[]>((resolve) => {
+        const cached = queryClient.getQueryData<Product[]>(queryKey);
+        if (cached && cached.length > 0) {
+          resolve(cached);
+          return;
+        }
+        // Wait for the subscription to fire once
+        const unsub = subscribeToFeaturedProducts((products) => {
+          queryClient.setQueryData<Product[]>(queryKey, products);
+          resolve(products);
+          unsub();
+        });
+      }),
     staleTime: Infinity,
   });
 }
+
