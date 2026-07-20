@@ -19,9 +19,6 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
-  devIndicators: {
-    appIsrStatus: false,
-  },
 };
 
 export default nextConfig;
