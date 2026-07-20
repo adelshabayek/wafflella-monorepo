@@ -91,17 +91,24 @@ export function subscribeToProducts(
 export function subscribeToFeaturedProducts(
   callback: (products: Product[]) => void
 ): Unsubscribe {
-  // Show the latest 6 available products as "featured"
+  // Show 6 available products as "featured" — sorted client-side to avoid composite index
   const q = query(
     collection(getDb(), "products"),
-    where("available", "==", true),
-    orderBy("createdAt", "desc")
+    where("available", "==", true)
   );
   return onSnapshot(q, (snapshot) => {
-    const products: Product[] = snapshot.docs.slice(0, 6).map((d) => ({
-      id: d.id,
-      ...(d.data() as Omit<Product, "id">),
-    }));
+    const products: Product[] = snapshot.docs
+      .map((d) => ({
+        id: d.id,
+        ...(d.data() as Omit<Product, "id">),
+      }))
+      .sort((a, b) => {
+        // Sort by createdAt descending, handle missing timestamps gracefully
+        const aTime = (a.createdAt as any)?.seconds ?? 0;
+        const bTime = (b.createdAt as any)?.seconds ?? 0;
+        return bTime - aTime;
+      })
+      .slice(0, 6);
     callback(products);
   });
 }
