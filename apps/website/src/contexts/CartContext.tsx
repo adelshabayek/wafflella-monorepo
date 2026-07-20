@@ -74,15 +74,17 @@ function cartReducer(state: CartState, action: CartAction): CartState {
           ),
         };
       }
+      const newItem: CartItem = { 
+        product: action.product, 
+        quantity: addQty,
+        priceAtAddition: variant?.price ?? action.product.price
+      };
+      if (variant?.id) newItem.variantId = variant.id;
+      if (variant?.name) newItem.variantName = variant.name;
+
       return {
         ...state,
-        items: [...state.items, { 
-          product: action.product, 
-          quantity: addQty,
-          variantId: variant?.id,
-          variantName: variant?.name,
-          priceAtAddition: variant?.price ?? action.product.price
-        }],
+        items: [...state.items, newItem],
       };
     }
 
@@ -159,10 +161,27 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [state.items]);
 
-  const add = useCallback((product: Product, quantity?: number, variant?: import("@wafflella/types").ProductVariant) => dispatch({ type: "ADD", product, quantity, variant }), []);
-  const remove = useCallback((productId: string, variantId?: string) => dispatch({ type: "REMOVE", productId, variantId }), []);
-  const increment = useCallback((productId: string, variantId?: string) => dispatch({ type: "INCREMENT", productId, variantId }), []);
-  const decrement = useCallback((productId: string, variantId?: string) => dispatch({ type: "DECREMENT", productId, variantId }), []);
+  const add = useCallback((product: Product, quantity?: number, variant?: import("@wafflella/types").ProductVariant) => {
+    const action: any = { type: "ADD", product };
+    if (quantity !== undefined) action.quantity = quantity;
+    if (variant !== undefined) action.variant = variant;
+    dispatch(action);
+  }, []);
+  const remove = useCallback((productId: string, variantId?: string) => {
+    const action: any = { type: "REMOVE", productId };
+    if (variantId !== undefined) action.variantId = variantId;
+    dispatch(action);
+  }, []);
+  const increment = useCallback((productId: string, variantId?: string) => {
+    const action: any = { type: "INCREMENT", productId };
+    if (variantId !== undefined) action.variantId = variantId;
+    dispatch(action);
+  }, []);
+  const decrement = useCallback((productId: string, variantId?: string) => {
+    const action: any = { type: "DECREMENT", productId };
+    if (variantId !== undefined) action.variantId = variantId;
+    dispatch(action);
+  }, []);
   const clear = useCallback(() => dispatch({ type: "CLEAR" }), []);
   const open = useCallback(() => dispatch({ type: "OPEN" }), []);
   const close = useCallback(() => dispatch({ type: "CLOSE" }), []);
