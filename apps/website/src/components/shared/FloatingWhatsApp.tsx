@@ -30,7 +30,7 @@ export function FloatingWhatsApp() {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}
           transition={{ type: "spring", bounce: 0.4, duration: 0.6 }}
-          className={`fixed bottom-6 z-50 flex flex-col gap-2 ${isRTL ? "left-6 items-start" : "right-6 items-end"}`}
+          className={`fixed bottom-6 z-50 ${isRTL ? "left-6" : "right-6"}`}
           role="complementary"
           aria-label="WhatsApp contact"
         >
@@ -38,11 +38,14 @@ export function FloatingWhatsApp() {
           <AnimatePresence>
             {showTooltip && (
               <motion.div
-                initial={{ opacity: 0, x: isRTL ? -10 : 10, scale: 0.9 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: isRTL ? -10 : 10, scale: 0.9 }}
+                initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.9 }}
                 transition={{ duration: 0.2 }}
-                className="bg-white text-brand-text text-sm font-medium px-4 py-2 rounded-2xl shadow-float border border-brand-border whitespace-nowrap"
+                className={`absolute bottom-full mb-3 whitespace-nowrap bg-white text-brand-text text-sm font-medium px-4 py-2 rounded-2xl shadow-float border border-brand-border ${
+                  isRTL ? "left-0" : "right-0"
+                }`}
+                style={{ transformOrigin: isRTL ? "left bottom" : "right bottom" }}
               >
                 💬 {t.whatsapp.chatTooltip}
               </motion.div>
@@ -50,27 +53,30 @@ export function FloatingWhatsApp() {
           </AnimatePresence>
 
           {/* Button */}
-          <motion.a
-            href={waUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            id="whatsapp-float-btn"
+          <motion.div
             animate={{ y: [0, -6, 0] }}
             transition={{
               repeat: Infinity,
               duration: 3,
               ease: "easeInOut",
             }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            onMouseEnter={() => setShowTooltip(true)}
-            onMouseLeave={() => setShowTooltip(false)}
-            className="w-14 h-14 rounded-full flex items-center justify-center shadow-float hover:shadow-card-hover transition-shadow duration-300"
-            style={{ backgroundColor: "#25D366" }}
-            aria-label="Contact us on WhatsApp"
           >
-            <MessageCircle size={26} className="text-white fill-white" />
-          </motion.a>
+            <motion.a
+              href={waUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              id="whatsapp-float-btn"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onMouseEnter={() => setShowTooltip(true)}
+              onMouseLeave={() => setShowTooltip(false)}
+              className="w-14 h-14 rounded-full flex items-center justify-center shadow-float hover:shadow-card-hover transition-shadow duration-300 relative"
+              style={{ backgroundColor: "#25D366" }}
+              aria-label="Contact us on WhatsApp"
+            >
+              <MessageCircle size={26} className="text-white fill-white" />
+            </motion.a>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

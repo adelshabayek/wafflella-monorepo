@@ -42,11 +42,13 @@ function OrderForm({ onBack }: { onBack: () => void }) {
     const itemLines = items
       .map((i) => {
         const name = isRTL && i.product.nameAr ? i.product.nameAr : i.product.name;
-        return `  • ${name} × ${i.quantity} = ${i.product.price * i.quantity} EGP`;
+        const fullName = i.variantName ? `${name} (${i.variantName})` : name;
+        const itemPrice = i.priceAtAddition || i.product.price;
+        return `🔸 ${i.quantity}x ${fullName}  »  ${itemPrice * i.quantity} EGP`;
       })
       .join("\n");
 
-    const message = `🧇 *طلب جديد من WAFFLELLA*\n\n👤 الاسم: ${data.name}\n📞 الهاتف: ${data.phone}\n📍 العنوان: ${data.address}\n\n🛒 *تفاصيل الطلب:*\n${itemLines}\n\n💰 *الإجمالي: ${totalPrice} EGP*`;
+    const message = `✨ *طلب جديد | WAFFLELLA* ✨\n\n👤 *العميل:* ${data.name}\n📱 *رقم التواصل:* ${data.phone}\n📍 *العنوان:* ${data.address}\n\n🛒 *الطلبات:*\n───────────────\n${itemLines}\n───────────────\n\n💰 *الإجمالي المطلوب:* ${totalPrice} EGP\n\nشكراً لاختياركم وافليلا! 🧇❤️`;
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
     window.open(url, "_blank", "noopener,noreferrer");
@@ -164,11 +166,14 @@ function OrderForm({ onBack }: { onBack: () => void }) {
           <div className="space-y-2">
             {items.map((item) => {
               const name = isRTL && item.product.nameAr ? item.product.nameAr : item.product.name;
+              const fullName = item.variantName ? `${name} (${item.variantName})` : name;
+              const itemPrice = item.priceAtAddition || item.product.price;
+              const key = `${item.product.id}-${item.variantId || 'default'}`;
               return (
-                <div key={item.product.id} className="flex justify-between text-sm">
-                  <span className="text-brand-muted">{name} × {item.quantity}</span>
+                <div key={key} className="flex justify-between text-sm">
+                  <span className="text-brand-muted">{fullName} × {item.quantity}</span>
                   <span className="font-semibold text-brand-text flex gap-1" dir="ltr">
-                    <span>{item.product.price * item.quantity}</span>
+                    <span>{itemPrice * item.quantity}</span>
                     <span className="text-brand-muted">EGP</span>
                   </span>
                 </div>

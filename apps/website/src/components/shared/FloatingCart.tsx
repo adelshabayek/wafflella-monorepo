@@ -19,23 +19,33 @@ export function FloatingCart() {
             transition={{ type: "spring", bounce: 0.4, duration: 0.6 }}
             className={`fixed bottom-[96px] z-40 flex flex-col gap-2 ${isRTL ? "left-6 items-start" : "right-6 items-end"}`}
           >
-          <motion.button
-            onClick={open}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="relative w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-float hover:shadow-card-hover transition-shadow duration-300 border border-brand-border"
-            aria-label="Open cart"
+          <motion.div
+            animate={{ rotate: [0, -15, 15, -10, 10, -5, 5, 0] }}
+            transition={{
+              repeat: Infinity,
+              repeatDelay: 1.5,
+              duration: 0.6,
+              ease: "easeInOut",
+            }}
           >
-            <ShoppingCart size={24} className="text-brand-text" />
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              key={totalItems}
-              className="absolute -top-1 -right-1 bg-brand-primary text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center shadow-soft border-2 border-white"
+            <motion.button
+              onClick={open}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-float hover:shadow-card-hover transition-shadow duration-300 border border-brand-border"
+              aria-label="Open cart"
             >
-              {totalItems}
-            </motion.div>
-          </motion.button>
+              <ShoppingCart size={24} className="text-brand-text" />
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                key={totalItems}
+                className="absolute -top-1 -right-1 bg-brand-primary text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center shadow-soft border-2 border-white"
+              >
+                {totalItems}
+              </motion.div>
+            </motion.button>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

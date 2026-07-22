@@ -41,7 +41,8 @@ export const translations = {
     featured: {
       badge: "Our Masterpieces",
       title: "Menu Superstars",
-      description: "These are our absolute best-sellers. Warning: highly addictive!",
+      description:
+        "These are our absolute best-sellers. Warning: highly addictive!",
       viewAll: "Gimme the Full Menu",
       empty: "We're cooking up some new crazy creations, stay tuned!",
     },
@@ -50,7 +51,8 @@ export const translations = {
     categories: {
       badge: "Pick Your Vibe",
       title: "What's Your Craving Today?",
-      description: "Feeling like a crispy golden waffle or a super fluffy pancake? Choose your mood!",
+      description:
+        "Feeling like a crispy golden waffle or a super fluffy pancake? Choose your mood!",
     },
 
     // ── About ──
@@ -66,19 +68,23 @@ export const translations = {
       values: [
         {
           title: "Made with Love",
-          description: "Every single waffle and pancake is crafted with care as if we're making it for ourselves.",
+          description:
+            "Every single waffle and pancake is crafted with care as if we're making it for ourselves.",
         },
         {
           title: "Top-Notch Ingredients",
-          description: "No compromises here! We use only the finest original chocolates and toppings for a mind-blowing taste.",
+          description:
+            "No compromises here! We use only the finest original chocolates and toppings for a mind-blowing taste.",
         },
         {
           title: "Perfect Crunch & Fluff",
-          description: "The secret is in the batter! We've perfected the recipe for the ultimate crunch and fluffiness.",
+          description:
+            "The secret is in the batter! We've perfected the recipe for the ultimate crunch and fluffiness.",
         },
         {
           title: "Always Fresh",
-          description: "Our batter is prepared fresh every single day to guarantee that out-of-this-world taste.",
+          description:
+            "Our batter is prepared fresh every single day to guarantee that out-of-this-world taste.",
         },
       ],
       ratedPremium: "Mind-Blowing Taste",
@@ -128,7 +134,8 @@ export const translations = {
       in: "in",
       noResults: "Couldn't find that",
       noItems: "No creations right now",
-      noResultsDesc: 'Sorry, nothing matches "%s". Try searching for waffles or pancakes!',
+      noResultsDesc:
+        'Sorry, nothing matches "%s". Try searching for waffles or pancakes!',
       noItemsDesc: "We're preparing a new killer menu, stay tuned!",
       clearSearch: "Clear Search",
     },
@@ -173,12 +180,14 @@ export const translations = {
     aboutPage: {
       badge: "✦ Our Journey",
       title: "About WAFFLELLA",
-      description: "A story of passion, quality, and an unwavering love for exceptional desserts.",
+      description:
+        "A story of passion, quality, and an unwavering love for exceptional desserts.",
     },
     contactPage: {
       badge: "✦ Say Hello",
       title: "Contact Us",
-      description: "We're always happy to hear from you. Reach out via any channel below.",
+      description:
+        "We're always happy to hear from you. Reach out via any channel below.",
     },
 
     // ── WhatsApp ──
@@ -228,7 +237,8 @@ export const translations = {
     featured: {
       badge: "اختراعاتنا",
       title: "نجوم المنيو",
-      description: "دي أكتر حاجات الناس أدمنتها عندنا، من الآخر كده.. دي خلاصة السعادة!",
+      description:
+        "دي أكتر حاجات الناس أدمنتها عندنا، من الآخر كده.. دي خلاصة السعادة!",
       viewAll: "هات المنيو كله",
       empty: "بنجهز اختراعات جديدة، خليك قريب!",
     },
@@ -254,19 +264,23 @@ export const translations = {
       values: [
         {
           title: "شغل بمزاج",
-          description: "كل وافلاية وبان كيكايه بتتعمل بحب واهتمام كأنها لينا مخصوص.",
+          description:
+            "كل وافلاية وبان كيكايه بتتعمل بحب واهتمام كأنها لينا مخصوص.",
         },
         {
           title: "خامات من الآخر",
-          description: "مفيش تنازلات هنا! بنستخدم أنضف الخامات والصوصات الأصلية عشان الطعم يضرب في الدماغ.",
+          description:
+            "مفيش تنازلات هنا! بنستخدم أنضف الخامات والصوصات الأصلية عشان الطعم يضرب في الدماغ.",
         },
         {
           title: "قرمشة وهشاشة",
-          description: "السر كله في العجينة.. ظابطين المقادير بالمللي عشان تاكل أحلى قرمشة وأطرى بان كيك.",
+          description:
+            "السر كله في العجينة.. ظابطين المقادير بالمللي عشان تاكل أحلى قرمشة وأطرى بان كيك.",
         },
         {
           title: "طازة دايماً",
-          description: "العجينة بتتحضر فريش كل يوم عشان الطعم يفضل دايماً في حتة تانية.",
+          description:
+            "العجينة بتتحضر فريش كل يوم عشان الطعم يفضل دايماً في حتة تانية.",
         },
       ],
       ratedPremium: "طعم يجنن",
@@ -291,8 +305,7 @@ export const translations = {
 
     // ── Footer ──
     footer: {
-      tagline:
-        "ملوك الوافل والبان كيك. هنا السعادة بتدوب في الشوكولاتة!",
+      tagline: "ملوك الوافل والبان كيك. هنا السعادة بتدوب في الشوكولاتة!",
       navigation: "لف في الموقع",
       ourMenu: "المنيو بتاعنا",
       contactUs: "كلمنا",
@@ -305,7 +318,7 @@ export const translations = {
     // ── Menu Page ──
     menu: {
       badge: "المنيو الكامل",
-      title: "اختار دلعك",
+      title: "اختار طلبك",
       description:
         "وافل مقرمش ولا بان كيك غرقان؟ قلب في المنيو واختار اللي يظبطلك مودك النهارده.",
       searchPlaceholder: "بتدور على إيه؟...",
@@ -316,7 +329,8 @@ export const translations = {
       in: "من",
       noResults: "ملقناش اللي بتدور عليه",
       noItems: "مفيش اختراعات دلوقتي",
-      noResultsDesc: 'معلش مفيش حاجة اسمها "%s" عندنا. جرب تدور على وافل أو بان كيك!',
+      noResultsDesc:
+        'معلش مفيش حاجة اسمها "%s" عندنا. جرب تدور على وافل أو بان كيك!',
       noItemsDesc: "بنجهزلك منيو جديد يكسر الدنيا، استنانا!",
       clearSearch: "امسح البحث",
     },
@@ -366,7 +380,8 @@ export const translations = {
     contactPage: {
       badge: "✦ قولنا ألو",
       title: "كلمنا",
-      description: "إحنا دايماً مبسوطين بيك. ابعتلنا أو تواصل معانا على أي حاجة من دول.",
+      description:
+        "إحنا دايماً مبسوطين بيك. ابعتلنا أو تواصل معانا على أي حاجة من دول.",
     },
 
     // ── WhatsApp ──
